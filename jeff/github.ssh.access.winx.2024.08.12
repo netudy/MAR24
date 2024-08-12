@@ -1,0 +1,284 @@
+o This is a vodka-bottle-documentation, sorry, no automation at this time, :-/
+exit 1
+
+##########################################################
+# Windows Subsystem for Linux Installation
+##########################################################
+
+# - Open Windows PowerShell or cmd
+wsl --install -d ubuntu
+# Den begärda åtgärden kräver en privilegiehöjning.
+# Installing: Virtual Machine Platform
+# Virtual Machine Platform has been installed.
+# Installing: Windows Subsystem for Linux
+# Windows Subsystem for Linux has been installed.
+# Installing: Windows Subsystem for Linux
+# Windows Subsystem for Linux has been installed.
+# Installing: Ubuntu
+# Ubuntu has been installed.
+# Den begärda åtgärden lyckades. Ändringarna kommer inte att träda i kraft förrän datorn startats om.
+
+# - reboot computer
+# - after reboot Ubuntu cmd will pop up:
+
+# Ubuntu is already installed.
+# Launching Ubuntu...
+# Installing, this may take a few minutes...
+# Please create a default UNIX user account. The username does not need to match your Windows username.
+# For more information visit: https://aka.ms/wslusers
+Enter new UNIX username: "jeff"
+New password: "password"
+Retype new password: "password"
+# passwd: password updated successfully
+# Installation successful!
+# To run a command as administrator (user "root"), use "sudo <command>".
+# See "man sudo_root" for details.
+
+# Welcome to Ubuntu 22.04.3 LTS (GNU/Linux 5.15.153.1-microsoft-standard-WSL2 x86_64)
+
+#  * Documentation:  https://help.ubuntu.com
+#  * Management:     https://landscape.canonical.com
+#  * Support:        https://ubuntu.com/advantage
+
+
+# This message is shown once a day. To disable it please create the
+# /home/jeff/.hushlogin file.
+# jeff@DESKTOP-1EDKBU6:~$
+
+# - Open WSL
+jeff@DESKTOP-1EDKBU6:~$ sudo apt update
+[sudo] password for jeff:
+# Get:1 http://security.ubuntu.com/ubuntu jammy-security InRelease [129 kB]
+# Hit:2 http://archive.ubuntu.com/ubuntu jammy InRelease
+# Get:3 http://archive.ubuntu.com/ubuntu jammy-updates InRelease [128 kB]
+# Get:4 http://archive.ubuntu.com/ubuntu jammy-backports InRelease [127 kB]
+# Get:5 http://security.ubuntu.com/ubuntu jammy-security/main amd64 Packages [1712 kB]
+# [...]
+
+# - install python
+jeff@DESKTOP-1EDKBU6:~$ sudo apt install python3-pip
+# Reading package lists... Done
+# Building dependency tree... Done
+# Reading state information... Done
+# The following additional packages will be installed:
+#   build-essential bzip2 cpp cpp-11 dpkg-dev fakeroot fontconfig-config fonts-dejavu-core g++ g++-11 gcc gcc-11
+#   gcc-11-base javascript-common libalgorithm-diff-perl libalgorithm-diff-xs-perl libalgorithm-merge-perl libasan6
+#   libatomic1 libc-dev-bin libc-devtools libc6 libc6-dev libcc1-0 libcrypt-dev libdeflate0 libdpkg-perl libexpat1
+#   libexpat1-dev libfakeroot libfile-fcntllock-perl libfontconfig1 libfreetype6 libgcc-11-dev libgd3 libgomp1 libisl23
+#   libitm1 libjbig0 libjpeg-turbo8 libjpeg8 libjs-jquery libjs-sphinxdoc libjs-underscore liblsan0 libmpc3 libnsl-dev
+#   libpython3-dev libpython3.10 libpython3.10-dev libpython3.10-minimal libpython3.10-stdlib libquadmath0
+#   libstdc++-11-dev libtiff5 libtirpc-dev libtsan0 libubsan1 libwebp7 libxpm4 linux-libc-dev lto-disabled-list make
+#   manpages-dev python3-dev python3-distutils python3-lib2to3 python3-setuptools python3-wheel python3.10
+#   python3.10-dev python3.10-minimal rpcsvc-proto zlib1g-dev
+# Suggested packages:
+#   bzip2-doc cpp-doc gcc-11-locales debian-keyring g++-multilib g++-11-multilib gcc-11-doc gcc-multilib autoconf
+#   automake libtool flex bison gdb gcc-doc gcc-11-multilib apache2 | lighttpd | httpd glibc-doc bzr libgd-tools
+#   libstdc++-11-doc make-doc python-setuptools-doc python3.10-venv python3.10-doc binfmt-support
+# Recommended packages:
+#   libnss-nis libnss-nisplus
+# The following NEW packages will be installed:
+#   build-essential bzip2 cpp cpp-11 dpkg-dev fakeroot fontconfig-config fonts-dejavu-core g++ g++-11 gcc gcc-11
+#   gcc-11-base javascript-common libalgorithm-diff-perl libalgorithm-diff-xs-perl libalgorithm-merge-perl libasan6
+#   libatomic1 libc-dev-bin libc-devtools libc6-dev libcc1-0 libcrypt-dev libdeflate0 libdpkg-perl libexpat1-dev
+#   libfakeroot libfile-fcntllock-perl libfontconfig1 libfreetype6 libgcc-11-dev libgd3 libgomp1 libisl23 libitm1
+#   libjbig0 libjpeg-turbo8 libjpeg8 libjs-jquery libjs-sphinxdoc libjs-underscore liblsan0 libmpc3 libnsl-dev
+#   libpython3-dev libpython3.10-dev libquadmath0 libstdc++-11-dev libtiff5 libtirpc-dev libtsan0 libubsan1 libwebp7
+#   libxpm4 linux-libc-dev lto-disabled-list make manpages-dev python3-dev python3-distutils python3-lib2to3 python3-pip
+#   python3-setuptools python3-wheel python3.10-dev rpcsvc-proto zlib1g-dev
+# The following packages will be upgraded:
+#   libc6 libexpat1 libpython3.10 libpython3.10-minimal libpython3.10-stdlib python3.10 python3.10-minimal
+# 7 upgraded, 68 newly installed, 0 to remove and 112 not upgraded.
+# Need to get 83.0 MB of archives.
+# After this operation, 243 MB of additional disk space will be used.
+Do you want to continue? [Y/n] y
+# Get:1 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libc6 amd64 2.35-0ubuntu3.8 [3235 kB]
+# Get:2 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libexpat1 amd64 2.4.7-1ubuntu0.3 [91.0 kB]
+# Get:3 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libpython3.10 amd64 3.10.12-1~22.04.5 [1950 kB]
+# Get:4 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 python3.10 amd64 3.10.12-1~22.04.5 [509 kB]
+# Get:5 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libpython3.10-stdlib amd64 3.10.12-1~22.04.5 [1849 kB]
+# [...]
+
+##########################################################
+# install password generator and ssh
+##########################################################
+
+# - install password generator
+jeff@DESKTOP-1EDKBU6:~$ sudo apt install pwgen
+# Reading package lists... Done
+# Building dependency tree... Done
+# Reading state information... Done
+# The following NEW packages will be installed:
+#   pwgen
+# 0 upgraded, 1 newly installed, 0 to remove and 112 not upgraded.
+# Need to get 17.4 kB of archives.
+# After this operation, 53.2 kB of additional disk space will be used.
+# Get:1 http://archive.ubuntu.com/ubuntu jammy/universe amd64 pwgen amd64 2.08-2build1 [17.4 kB]
+# Fetched 17.4 kB in 0s (66.6 kB/s)
+# Selecting previously unselected package pwgen.
+# (Reading database ... 31413 files and directories currently installed.)
+# Preparing to unpack .../pwgen_2.08-2build1_amd64.deb ...
+# Unpacking pwgen (2.08-2build1) ...
+# Setting up pwgen (2.08-2build1) ...
+# Processing triggers for man-db (2.10.2-1) ...
+
+# - create a password 40 chars, numbers and symbols
+jeff@DESKTOP-1EDKBU6:~$ pwgen -y -n 40
+# ol\eec;ei$F`oonga8aze@phahb2Mi8Thah6beip
+# ooRi5is4dohla9ohl(ooHoh7Xuu0EBohphe^e0qu
+# vi8ithic3ohsieth|o8joolae4oishae#Vahchae
+# aex=a]he0oxah0ait4Gai1tieSh0ahju6phoNie0
+# quaik5Bou8awoo6phuz6xu=ac3Jich^aizohQu5c
+# aa\cir-oh+fi!jieng*eiti5kei=Rie=S7kofaiw
+# uqu7fae5ro'Gin9yae9Ku3LaC2iz.i9wiwee1shi
+# ahtaiyeighu"B3osh}eethaek7Ohn}oh6euPh=oo
+# aeV#eijie9ahShite1phah-phaiceiDaeKoh{Y2a
+# al6ohy'ooZo8ejie+lohvoo^jee(b4phahgai0ei
+# aij1eePahcee9yaiVeejau!fo5qui'a0tu0aiGoh
+# aef4ahchaetaePh4ohc]ahlairi2aiShoh6aephe
+# phaejae|gh`oh6zei2poh6Ouzoh0hu8fah1ii4oc
+# aix3iebah<W8Eef/ee!poZ3izeifah9quoesoeZo
+# ar5dei#ngeij0ka.zie2Ujerae7geeCh.iebofio
+# thaefe`ugh5quaef0ooch6Hah4hie3oefe:a@poh
+# Ao8ong=eghaa3aeT5ooroaphoh3eng6the1iepa9
+# wo8ceth3Caegh2ofoim8uo2hei3aexaoYa[zeib0
+# Die)h8ja5cheek7Vae`f7ahv8aethaNeikohng=e
+# im7eingaloo5Fee5oor3Ei#l6jameek1yoh5ohpi
+
+# - check if ssh service is running
+jeff@DESKTOP-1EDKBU6:~$ sudo service ssh status
+# Unit ssh.service could not be found.
+
+# - in wsl install openssh
+jeff@DESKTOP-1EDKBU6:~$ sudo apt install openssh-server
+# Reading package lists... Done
+# Building dependency tree... Done
+# Reading state information... Done
+# The following additional packages will be installed:
+#   libwrap0 ncurses-term openssh-client openssh-sftp-server ssh-import-id
+# Suggested packages:
+#   keychain libpam-ssh monkeysphere ssh-askpass molly-guard
+# The following NEW packages will be installed:
+#   libwrap0 ncurses-term openssh-server openssh-sftp-server ssh-import-id
+# The following packages will be upgraded:
+#   openssh-client
+# 1 upgraded, 5 newly installed, 0 to remove and 111 not upgraded.
+# Need to get 1705 kB of archives.
+# After this operation, 6157 kB of additional disk space will be used.
+Do you want to continue? [Y/n] "y"
+# Get:1 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 openssh-client amd64 1:8.9p1-3ubuntu0.10 [906 kB]
+# Get:2 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 openssh-sftp-server amd64 1:8.9p1-3ubuntu0.10 [38.9 kB]
+# Get:3 http://archive.ubuntu.com/ubuntu jammy/main amd64 libwrap0 amd64 7.6.q-31build2 [47.9 kB]
+# Get:4 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 openssh-server amd64 1:8.9p1-3ubuntu0.10 [435 kB]
+# Get:5 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 ncurses-term all 6.3-2ubuntu0.1 [267 kB]
+# [...]
+
+
+# - create keypair
+jeff@DESKTOP-1EDKBU6:~$ cd
+jeff@DESKTOP-1EDKBU6:~$ mkdir .ssh
+jeff@DESKTOP-1EDKBU6:~$ chmod 740 .ssh/
+jeff@DESKTOP-1EDKBU6:~$ ssh-keygen -t rsa -b 4096 -f ~/.ssh/hp.envy
+# Generating public/private rsa key pair.
+Enter passphrase (empty for no passphrase): "test"
+Enter same passphrase again: "test"
+# Your identification has been saved in /home/jeff/.ssh/hp.envy
+# Your public key has been saved in /home/jeff/.ssh/hp.envy.pub
+# The key fingerprint is:
+# SHA256:4FG0tu/7iLMI9j/u6aE6FW2ITUpfuQgF2KBLa8GSrQ0 jeff@DESKTOP-1EDKBU6
+# The key's randomart image is:
+# +---[RSA 4096]----+
+# |  .+.o..o.       |
+# |.+. + ..o.       |
+# |E+.. Bo=o.       |
+# |o=o o.*++.       |
+# |oo.   .oS        |
+# |.     .  .       |
+# |    o.  . .      |
+# |   ..o oo= .     |
+# |    .o+=O++o.    |
+# +----[SHA256]-----+
+# jeff@DESKTOP-1EDKBU6:~$
+
+# - start ssh service
+jeff@DESKTOP-1EDKBU6:~$ sudo service ssh start
+
+# - allow ssh in firewall
+jeff@DESKTOP-1EDKBU6:~$ sudo ufw allow ssh
+# Rules updated
+# Rules updated (v6)
+
+##########################################################
+# upload public keypair to github
+##########################################################
+
+# - install git
+jeff@DESKTOP-1EDKBU6:~$ sudo apt install git
+# Reading package lists... Done
+# Building dependency tree... Done
+# Reading state information... Done
+# Suggested packages:
+#   git-daemon-run | git-daemon-sysvinit git-doc git-email git-gui gitk gitweb git-cvs git-mediawiki git-svn
+# The following packages will be upgraded:
+#   git
+# 1 upgraded, 0 newly installed, 0 to remove and 110 not upgraded.
+# [...]
+
+# - fetch pubkey
+jeff@DESKTOP-1EDKBU6:~$ cat .ssh/hp.envy.pub
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDeW0epcsEDCtIYJY3QyI07ab1BQTEcXuWNNYxSeiBjUklruG76VwoIWGvQ2zEHnlRhkirfLr5TgIFByfW6NvMELZOnS/VedgRR/CeA26FG8G9HRhbppz7QaKEy9Focwaboz6IrfO7wgCXcPZgqXHA2MzhCGq8lYDJQziSVnaubclzL77/euHqNrlJw3t2OJLUyRI2b43yofukrp6RdSwOg6FtVGET5a5SjGEq0X1qsiZAdHKEwr1XkbDOHKE8KXfFRGhZq/9puDtRyZicLZJ6Z8SmgENjC6OmHaMxsJ12/4ZuzU7HDgQtmSNfgaExbQ7OZCTELMJyiL0krAFDUJqhmyLjdYEYcclZ7nj7uLrh4HIRe8GjiV4nXtkmdTw7S+ch1DpFSHNNltcZP+xd4YIqKP44+yUzeOtlVKxxwi1mPaAnfCccihviTzmZ1bxICOecF25iiJr3SDZwtiygU8dTQ7kyBsV4w+oizm9JNZ80fTs5G8+aKdadflnEQE3p7qGHVUDj8+gKT1Y6kVx2vOlDZp9IAt9BC+525wzAMruvwX7JONZZ4BLj5QI7usb3RgMZ/GdUNDRrmqys0pQqvibeG/g9zNUVedm2tqHf3zvZ11EUF5j7yr339nwtfK8dpZMeAPOVsxnztQpHGZWarfyzHi4lA198UrWVXQmHrU6o+RQ== jeff@DESKTOP-1EDKBU6
+
+# - upload to github
+"https://github.com/settings/ssh/new"
+
+# Add new SSH Key
+# Title
+"hp.envy"
+
+# Key type
+"[Authentication Key↕]"
+
+# Key
+"****************"
+
+"Add SSH key"
+
+# - create ssh config file
+cat <<"EOF" > ~/.ssh/config
+Host github.com
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/hp.envy
+EOF
+
+# - Create source directory
+cd
+mkdir src
+cd src
+
+# - Clone repo
+jeff@DESKTOP-1EDKBU6:~/src$ git clone git@github.com:JensenEducationKista/MAR24.git
+# Cloning into 'MAR24'...
+# The authenticity of host 'github.com (140.82.121.4)' can't be established.
+# ED25519 key fingerprint is SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU.
+# This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? "yes"
+# Warning: Permanently added 'github.com' (ED25519) to the list of known hosts.
+Enter passphrase for key '/home/jeff/.ssh/hp.envy': "test"
+# remote: Enumerating objects: 6, done.
+# remote: Counting objects: 100% (6/6), done.
+# remote: Compressing objects: 100% (4/4), done.
+# remote: Total 6 (delta 0), reused 6 (delta 0), pack-reused 0
+# Receiving objects: 100% (6/6), 4.12 KiB | 843.00 KiB/s, done.
+
+# - Push changes to remote repository
+cd MAR24
+mkdir jeff
+cd jeff
+cd
+cd src/MAR24/
+jeff@DESKTOP-1EDKBU6:~/src/MAR24$ git status
+# On branch main
+# Your branch is up to date with 'origin/main'.
+
+# nothing to commit, working tree clean
+
