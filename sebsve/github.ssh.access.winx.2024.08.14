@@ -1,0 +1,225 @@
+#!/bin/sh
+echo This is a vodka-bottle-documentation, sorry, no automation at this time, :-/
+exit 1
+
+##########################################################
+# Windows Subsystem for Linux Installation by Sebastian.S.
+##########################################################
+
+# - Open Windows PowerShell or cmd
+wsl --install -d ubuntu
+# Ubuntu is already installed.
+# Launching Ubuntu...
+
+
+# - reboot computer
+# - after reboot Ubuntu cmd will pop up:
+
+# Ubuntu is already installed.
+# Launching Ubuntu...
+# Installing, this may take a few minutes...
+# Please create a default UNIX user account. The username does not need to match your Windows username.
+# For more information visit: https://aka.ms/wslusers
+Enter new UNIX username: "sebsve83"
+New password: "123Sebbe@"
+Retype new password: "123Sebbe@"
+# passwd: password updated successfully
+# Installation successful!
+# To run a command as administrator (user "root"), use "sudo <command>".
+# See "man sudo_root" for details.
+
+# Welcome to Ubuntu 22.04.3 LTS (GNU/Linux 5.15.153.1-microsoft-standard-WSL2 x86_64)
+
+#  * Documentation:  https://help.ubuntu.com
+#  * Management:     https://landscape.canonical.com
+#  * Support:        https://ubuntu.com/advantage
+
+
+# This message is shown once a day. To disable it please create the
+# /home/jeff/.hushlogin file.
+
+
+# - Open WSL
+sudo apt update
+[sudo] password for jeff: "123Sebbe@"
+# Hit:1 http://archive.ubuntu.com/ubuntu jammy InRelease
+# Get:2 http://archive.ubuntu.com/ubuntu jammy-updates InRelease [128 kB]
+# Get:3 http://archive.ubuntu.com/ubuntu jammy-backports InRelease [127 kB]
+# Get:4 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 Packages [1945 kB]
+# [...]
+
+# - install python
+sudo apt install python3-pip
+# Reading package lists... Done
+# Building dependency tree... Done
+# Reading state information... Done
+# The following additional packages will be installed:
+# [...]
+
+##########################################################
+# install password generator and ssh
+##########################################################
+
+# - install password generator
+sudo apt install pwgen
+# Reading package lists... Done
+# Building dependency tree... Done
+# Reading state information... Done
+# The following NEW packages will be installed:
+# [...]
+
+# - create a password 40 chars, numbers and symbols
+pwgen -y -n 40
+# eshi9ait2qua1AeGheeb\ie4vietaochooc*ohxu
+# Phai9eeth7aisheh7joh;yi4Ieyaerah`t3oghei
+# eev7Aihi!b4Ahqu6ieye5Mee9pae=D6uth4yusai
+# oosohnaimohju5ooqu5ozu2Eiv2eec+oi:b/ee3T
+# baevae~x7Soo5OJ-ahrui0liin6eajexoshaehu0
+# SeeKeidoo2Ail5peeChoot6moophai9osh6aid~a
+# Ohd6ohvo"Riesh2tae!S<eic<oo`Gohk9kiequ1o
+# jei4lee5as1na2phiush8sohta7foquaWae&z8ae
+# Aipie(Wei6iej5Tai6sahs;a0eigh3eeTia0veew
+# aiSoh're7kail1oowe6Yohf1phis7vaingai%B8i
+# Ayeengoo3eephaiv0eir2je'angaetaisai@ng3C
+# ooj;eeno0xai1uh8xohfeighie@V-aichekoh8ah
+# vooth9aij9lei5OoShied4thec8deicoo~daiS7s
+# Faebiech8reiwae9ier9oongai5tivoh3eiquie.
+# aeNgai9zu1zai}s8euteinoo7phohkugiemooyee
+# cahs9ib}oth#ez0yae4oosaik|ux7quaure7ooMu
+# OhK1maitaph(a1ZeeJ8Gae4cahr9aec8quothieJ
+# AhN0guwee.Z4rue0hoodieph}aitaep5Hi0Xo[c9
+# Aeshe3ameihuu2roh8iengaeTah1on@aeL`uciaR
+# yai:chu8tu8Ia6ohQueph8Jahca1ioZ`ephoh4Ix
+
+# - check if ssh service is running
+sudo service ssh status
+# ● ssh.service - OpenBSD Secure Shell server
+#      Loaded: loaded (/lib/systemd/system/ssh.service; enabled; vendor preset: enabled)
+#      Active: active (running) since Mon 2024-08-12 14:10:22 CEST; 23h ago
+#        Docs: man:sshd(8)
+#              man:sshd_config(5)
+#    Main PID: 2497 (sshd)
+#       Tasks: 1 (limit: 9465)
+#      Memory: 1.7M
+#      CGroup: /system.slice/ssh.service
+#              └─2497 "sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups"
+
+# Aug 12 14:10:22 DESKTOP-1EDKBU6 systemd[1]: Starting OpenBSD Secure Shell server...
+# Aug 12 14:10:22 DESKTOP-1EDKBU6 sshd[2497]: Server listening on 0.0.0.0 port 22.
+# Aug 12 14:10:22 DESKTOP-1EDKBU6 sshd[2497]: Server listening on :: port 22.
+# Aug 12 14:10:22 DESKTOP-1EDKBU6 systemd[1]: Started OpenBSD Secure Shell server.
+
+# - in wsl install openssh
+sudo apt install openssh-server
+# Reading package lists... Done
+# Building dependency tree... Done
+# Reading state information... Done
+# The following additional packages will be installed:
+# [...]
+
+# - create keypair
+cd
+mkdir .ssh
+chmod 740 .ssh/
+ssh-keygen -t rsa -b 4096 -f ~/.ssh/sebsve.acer
+# Generating public/private rsa key pair.
+Enter passphrase (empty for no passphrase): "eshi9ait2qua1AeGheeb\ie4vietaochooc*ohxu"
+Enter same passphrase again: "eshi9ait2qua1AeGheeb\ie4vietaochooc*ohxu"
+# Your identification has been saved in /home/sebsve83/.ssh/sebsve.acer
+# Your public key has been saved in /home/sebsve83/.ssh/sebsve.acer.pub
+# The key fingerprint is:
+# SHA256:NaELHvPcXda6y2Kqy63bP4I+fPVVkHJej1CUvY0kYn0 sebsve83@Chleb
+# The key's randomart image is:
+# +---[RSA 4096]----+
+# |          .. oo+ |
+# |         .o.= E.o|
+# |      + ..o. Oo==|
+# |     . * + o o+o+|
+# |      . S . . . .|
+# |            .  ..|
+# |       . . . ... |
+# |       .+oo +... |
+# |       .BB+=.oo  |
+# +----[SHA256]-----+
+
+# - start ssh service
+sudo service ssh start
+ # * Starting OpenBSD Secure Shell server sshd
+
+# - allow ssh in firewall
+sudo ufw allow ssh
+# Rules updated
+# Rules updated (v6)
+
+##########################################################
+# upload public keypair to github
+##########################################################
+
+# - install git
+sudo apt install git
+# Reading package lists... Done
+# Building dependency tree... Done
+# Reading state information... Done
+# git is already the newest version (1:2.34.1-1ubuntu1.11).
+# git set to manually installed.
+# 0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+
+# - fetch pubkey
+cat .ssh/sebsve.acer.pub
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCqecIkfFR5+KA498vbVanoiEO04UYaPXT+EtVnw0B1qOJQUzOGUsuW7+5aEtBUjjU1D06yBUzRQgqlYW5e1KxCzOrTcppio5CFVdjg5AO981Ds/Y5je9/mqbpuaIXTigMFljJZYxokGvg0bhZSXV7wegPlWxD7S37OJjnrja8obTGRcYS9lxJx6aH1F5wbn8swTTp28D0sLrQ73wBGai5xp68gijnYpu/c+ycmiMS7n2JL8Wxn5NchmKAVZtDlRFaEK3oieIxlsnHXGMrW277ndMc5dnTRFnjvZ9WohJ5UVOxfulA+rLdZ4SXXUXuVXHE8+JJfS/4qCZPFBTmdq7CxM2eZ1phrgDzcLpAfzuQT1A4axrXEVmKq53MNY+URDaSMF2c4B7o7bCBfqrkNKlaQ/H6gjH0pPtNPUl+M7jyc+Ce27ClgWxhWVCRsDtbAclfaB8vgoVzssbtcmwO8xndJrDOqTzRwTbhx2m4lJcSD/R8ks/eTg63nxgo6LIXtWbVlGkVZVGvzmTfMaY/J9VmQejB7sumlmeDE2vouosaek49Tm20vmMThrxgnN51TN53Xj8+dwTG0of8NVHWDbEIkqTuiakz2r0dROmFUjZiztX04WN6+/CrtD+zZHJhNVph0d03tUdASlaoEN4WN6jpX3Ty52vqecTAihTfU3VYtJQ== sebsve83@Chleb
+
+# - upload to github through web browser
+"https://github.com/settings/ssh/new"
+
+# Add new SSH Key
+# Title
+"sebsve.acer"
+
+# Key type
+"[Authentication Key↕]"
+
+# Key
+"****************"
+
+"Add SSH key"
+
+# - create ssh config file
+cat <<"EOF" > ~/.ssh/config
+Host github.com
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/sebsve.acer
+EOF
+
+# - Verify file
+cat ~/.ssh/config
+# Host github.com
+#   HostName github.com
+#   User git
+#   IdentityFile ~/.ssh/sebsve.acer
+
+# - Create source directory
+cd
+mkdir src
+cd src
+
+# - Clone repo
+git clone git@github.com:JensenEducationKista/MAR24.git
+# Cloning into 'MAR24'...
+# Enter passphrase for key '/home/sebsve83/.ssh/sebsve.acer':
+# remote: Enumerating objects: 35, done.
+# remote: Counting objects: 100% (35/35), done.
+# remote: Compressing objects: 100% (27/27), done.
+# remote: Total 35 (delta 14), reused 24 (delta 6), pack-reused 0 (from 0)
+# Receiving objects: 100% (35/35), 22.26 KiB | 7.42 MiB/s, done.
+# Resolving deltas: 100% (14/14), done.
+
+# - Push changes to remote repository
+cd MAR24
+mkdir sebsve
+cd sebsve
+git status
+# On branch main
+# Your branch is up to date with 'origin/main'.
+
+# nothing to commit, working tree clean
