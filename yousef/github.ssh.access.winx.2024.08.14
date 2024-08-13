@@ -1,0 +1,235 @@
+# #!/bin/sh
+echo This is a vodka-bottle-documentation, sorry, no automation at this time, :-/
+exit 1
+
+##########################################################
+# Windows Subsystem for Linux Installation by yousef
+##########################################################
+
+# - Open Windows PowerShell or cmd
+wsl --install -d ubuntu
+# Ubuntu har redan installerats.
+# Startar Ubuntu ...
+
+# - reboot computer
+# - after reboot Ubuntu cmd will pop up:
+
+# Ubuntu is already installed.
+# Launching Ubuntu...
+# Installing, this may take a few minutes...
+# Please create a default UNIX user account. The username does not need to match your Windows username.
+# For more information visit: https://aka.ms/wslusers
+Enter new UNIX username: "yousef127"
+New password: "**********"
+Retype new password: "**********"
+# passwd: password updated successfully
+# Installation successful!
+# To run a command as administrator (user "root"), use "sudo <command>".
+# See "man sudo_root" for details.
+
+# Welcome to Ubuntu 22.04.3 LTS (GNU/Linux 5.15.153.1-microsoft-standard-WSL2 x86_64)
+
+#  * Documentation:  https://help.ubuntu.com
+#  * Management:     https://landscape.canonical.com
+#  * Support:        https://ubuntu.com/advantage
+
+
+# This message is shown once a day. To disable it please create the
+# /home/jeff/.hushlogin file.
+
+
+# - Open WSL
+sudo apt update
+[sudo] password for yousef: "**********"
+# Get:1 http://security.ubuntu.com/ubuntu jammy-security InRelease [129 kB]
+# Hit:2 http://archive.ubuntu.com/ubuntu jammy InRelease
+# Get:3 http://archive.ubuntu.com/ubuntu jammy-updates InRelease [128 kB]
+# Get:4 http://security.ubuntu.com/ubuntu jammy-security/main amd64 Packages [1724 kB]
+# [...]
+
+# - install python
+sudo apt install python3-pip
+#Reading package lists... Done
+# Building dependency tree... Done
+# Reading state information... Done
+# The following additional packages will be installed:
+# [...]
+
+##########################################################
+# install password generator and ssh
+##########################################################
+
+# - install password generator
+sudo apt install pwgen
+# Reading package lists... Done
+# Building dependency tree... Done
+# Reading state information... Done
+# The following NEW packages will be installed:
+# [...]
+
+# - create a password 40 chars, numbers and symbols
+pwgen -y -n 40
+# nooBohb\oa"Qu[ohng8ie6kee5uaja9inies!ope
+# tah9eiS2aree0waiMai7athohquo`a6zair3ichu
+# sut*oo:ghoh7choyahriew\aghua0uQueb3aich?
+# Iepeo5aivi8joo2thaeGh4vohvaYa;a2ashae7He
+# Aik6Uxaixoo3beeghuthei;RaiQu$iexah3bae[Y
+# Eukequ0iethei1Aimoo%n%ee4ziitu(pa9ki1voh
+# oSh#uvah"kai1aich8zaoki3Eo2eezu$afa'i9ki
+# mog+i(o0gil6Ue2reewa2sheel5Iey5Meephee1w
+# quait2da8wui2eix5mie2ga2Dei8aht1meiCh&oo
+# chaer7john8ac4quuchaith-o,ph<i?ph=uo7Eed
+# xo!chei7joh3Aerewooqu^ie9bieZ#oode3ohfa8
+# ue2eivoo5xai9seew%aeGe5soh1niezeerazaiv#
+# riXo{sh4Chi#ix@ax9keephaw~ai3ophopheixah
+# Hookeikah8shoh9ahChoo2quua)saezarah4esh2
+# ahch9aVoas5oosaihie9aiPhooqu7ta(ph8icae7
+# sei!r5ohc0ahthayiePh&oz*aev2mi>y4shoogh4
+# eeSi5foo~ng2uhai0Ohz_ei0roh1ool3aesa0iek
+# Eevah"N#ah^f|eH5cheit|i2uw|i>u}gho)e^cah
+# boh9maes%ithoh8goo8oothiejaith3eeyee%We7
+# uy2eef2shaij2Ohc(o;X)oojoudohroh/F7Lah[c
+
+# - check if ssh service is running
+sudo service ssh status
+# ●  ssh.service - OpenBSD Secure Shell server
+   #   Loaded: loaded (/lib/systemd/system/ssh.service; enabled; vendor preset: enabled)
+   #   Active: active (running) since Tue 2024-08-13 22:28:31 CEST; 2min 24s ago
+   #     Docs: man:sshd(8)
+   #           man:sshd_config(5)
+   # Main PID: 2557 (sshd)
+   #    Tasks: 1 (limit: 9409)
+   #   Memory: 1.7M
+   #   CGroup: /system.slice/ssh.service
+   #           └─2557 "sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups"
+
+# Aug 13 22:28:31 DESKTOP-5IPFGJT systemd[1]: Starting OpenBSD Secure Shell server...
+# Aug 13 22:28:31 DESKTOP-5IPFGJT sshd[2557]: Server listening on 0.0.0.0 port 22.
+# Aug 13 22:28:31 DESKTOP-5IPFGJT sshd[2557]: Server listening on :: port 22.
+# Aug 13 22:28:31 DESKTOP-5IPFGJT systemd[1]: Started OpenBSD Secure Shell server.
+# - in wsl install openssh
+sudo apt install openssh-server
+# Reading package lists... Done
+# Building dependency tree... Done
+# Reading state information... Done
+# The following additional packages will be installed:
+#   libwrap0 ncurses-term openssh-client openssh-sftp-server ssh-import-id
+# Suggested packages:
+#   keychain libpam-ssh monkeysphere ssh-askpass molly-guard
+# The following NEW packages will be installed:
+#   libwrap0 ncurses-term openssh-server openssh-sftp-server ssh-import-id
+# The following packages will be upgraded:
+# [...]
+
+
+# - create keypair
+cd
+mkdir .ssh
+chmod 740 .ssh/
+ssh-keygen -t rsa -b 4096 -f ~/.ssh/yousef127.hp
+# Generating public/private rsa key pair.
+Enter passphrase (empty for no passphrase): "nooBohb\oa"Qu[ohng8ie6kee5uaja9inies!ope" #"
+Enter same passphrase again: "nooBohb\oa"Qu[ohng8ie6kee5uaja9inies!ope" #"
+# Your identification has been saved in /home/yousef127/.ssh/yousef127.hp
+# Your public key has been saved in /home/yousef127/.ssh/yousef127.hp.pub
+# The key fingerprint is:
+# SHA256:+GmmFZKps8uMkWhlynHSVSPsdyYxtfokmgfCuqRRAgk yousef127@DESKTOP-5IPFGJT
+# The key's randomart image is:
+# +---[RSA 4096]----+
+# |E   .. o..       |
+# |..   .oo. .      |
+# |o   ..  o.       |
+# |. o .. *.o       |
+# |.o.B .*oS.       |
+# |.+O...+o+o       |
+# |o*o oo .*.       |
+# |+..= o.=         |
+# |... =..          |
+# +----[SHA256]-----+
+
+# - start ssh service
+sudo service ssh start
+
+# - allow ssh in firewall
+sudo ufw allow ssh
+# Rules updated
+# Rules updated (v6)
+
+##########################################################
+# upload public keypair to github
+##########################################################
+
+# - install git
+sudo apt install git
+#Reading package lists... Done
+# Building dependency tree... Done
+# Reading state information... Done
+# Suggested packages:
+#   git-daemon-run | git-daemon-sysvinit git-doc git-email git-gui gitk
+#   gitweb git-cvs git-mediawiki git-svn
+# The following packages will be upgraded:
+#   git
+# 1 upgraded, 0 newly installed, 0 to remove and 110 not upgraded.
+# Need to get 3165 kB of archives.
+
+# - fetch pubkey
+cat .ssh/yousef127.hp.pub
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDGMC9s/IX0GL71GrVOJE8SGjdYhuCNcOFKbVhEExaht3/Ad2qc7KpuS0T+zS4UkG+Ta4kc5ruFTEhnhg3snQeIFqXVqJoWpFHh4JcLQZeON+O7dJLTZcFuYjFmnHLV1sn0wMJrDPGdb8RRpVTaeEtvaopdZmWMXvpCGAqunEZCIe4l5x+9BBKohOW50ZFyJnvL1mSOMakE5pIf2emQKACX0FaiGlVxaemWGUEUGSJx92bKAV4emzOGU/LF9LM7j8rxwSWhFSO1uEsWF4d/ikOAq3qmIQJImDZyPd5A832xuUWXTEI0RE06FMK7YwxtIpvxCPiWkWPWZYH0ED1t2FB6aUNK8aYXIHkqBVgYo11NFqBLlOL75x9yG0YgsjvrnAAB7rDSN+dKZTPsvuweBgwBkuJcyKrsaGZMf6N2kdU9kcXoStgXfmdd2MAtRa4sL1ZDzqgaDbHEs3tyk4SIf3WmUnn2oShVpvQmGk33YrWs82vzTj5ZvywN49TdCtmIygP5K9N5Gne5SZp83+1lxU07lHSgz/Qm4w601mvrgfK6U/1M8X55nwY0578aWMfGPhEIIuW3AQ+2ryTy+TtfRkVh8iamTnR4rw/Z6s7x/UEZujWw2ei+LyvEw8tnaiCAy8ke6ESqUOLCGBhixa4BUlhcyW/oQwenOwBUGP+w9BzL8Q== yousef127@DESKTOP-5IPFGJT
+
+# - upload to github through web browser
+"https://github.com/settings/ssh/new"
+
+# Add new SSH Key
+# Title
+"yousef127.hp"
+
+# Key type
+"[Authentication Key↕]"
+
+# Key
+"****************"
+
+"Add SSH key"
+
+# - create ssh config file
+cat <<"EOF" > ~/.ssh/config
+Host github.com
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/yousef127.hp
+EOF
+
+# - Verify file
+cat ~/.ssh/config
+# Host github.com
+  # HostName github.com
+  # User git
+  # IdentityFile ~/.ssh/yousef127.hp
+
+# - Create source directory
+cd
+mkdir src
+cd src
+
+# - Clone repo
+git clone git@github.com:JensenEducationKista/MAR24.git
+#This key is not known by any other names
+# Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+# Warning: Permanently added 'github.com' (ED25519) to the list of known hosts.
+# Enter passphrase for key '/home/yousef127/.ssh/yousef127.hp':
+# remote: Enumerating objects: 35, done.
+# remote: Counting objects: 100% (35/35), done.
+# remote: Compressing objects: 100% (27/27), done.
+# remote: Total 35 (delta 14), reused 24 (delta 6), pack-reused 0 (from 0)
+# Receiving objects: 100% (35/35), 22.26 KiB | 2.47 MiB/s, done.
+# Resolving deltas: 100% (14/14), done.
+
+# - Push changes to remote repository
+cd MAR24
+mkdir yousef
+cd yousef 
+git status
+# On branch main
+# Your branch is up to date with 'origin/main'.
+
+# nothing to commit, working tree clean
