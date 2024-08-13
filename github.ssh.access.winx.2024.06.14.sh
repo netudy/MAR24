@@ -1,21 +1,23 @@
-#!/bin/sh
+# #!/bin/sh
 echo This is a vodka-bottle-documentation, sorry, no automation at this time, :-/
 exit 1
 
 ##########################################################
-# Windows Subsystem for Linux Installation
+# Windows Subsystem for Linux Installation by Jeff
 ##########################################################
 
-# - Open Windows PowerShell
- wsl --install -d ubuntu
-# The requested operation requires elevation.
+# - Open Windows PowerShell or cmd
+wsl --install -d ubuntu
+# Den begärda åtgärden kräver en privilegiehöjning.
 # Installing: Virtual Machine Platform
 # Virtual Machine Platform has been installed.
+# Installing: Windows Subsystem for Linux
+# Windows Subsystem for Linux has been installed
 # Installing: Windows Subsystem for Linux
 # Windows Subsystem for Linux has been installed.
 # Installing: Ubuntu
 # Ubuntu has been installed.
-# The requested operation is successful. Changes will not be effective until the system is rebooted.
+# Den begärda åtgärden lyckades. Ändringarna kommer inte att träda i kraft förrän datorn startats om.
 
 # - reboot computer
 # - after reboot Ubuntu cmd will pop up:
@@ -25,9 +27,9 @@ exit 1
 # Installing, this may take a few minutes...
 # Please create a default UNIX user account. The username does not need to match your Windows username.
 # For more information visit: https://aka.ms/wslusers
-Enter new UNIX username: "aliz"
-New password: "ali123"
-Retype new password: "ali123"
+Enter new UNIX username: "jeff"
+New password: "password"
+Retype new password: "password"
 # passwd: password updated successfully
 # Installation successful!
 # To run a command as administrator (user "root"), use "sudo <command>".
@@ -41,34 +43,17 @@ Retype new password: "ali123"
 
 
 # This message is shown once a day. To disable it please create the
-# /home/aliz/.hushlogin file.
-# aliz@AliZ:~$
+# /home/jeff/.hushlogin file.
+
 
 # - Open WSL
 sudo apt update
-[sudo] password for aliz: "ali123"
-# Get:1 http://security.ubuntu.com/ubuntu jammy-security InRelease [129 kB]
-# [...]
-# Fetched 31.8 MB in 24s (1305 kB/s)
-# Reading package lists... Done
-# Building dependency tree... Done
-# Reading state information... Done
-# 105 packages can be upgraded. Run 'apt list --upgradable' to see them.
-
-sudo apt upgrade
-# Reading package lists... Done
-# Building dependency tree... Done
-# Reading state information... Done
-# Calculating upgrade... Done
-# The following NEW packages will be installed:
-# [...]
-Do you want to continue? [Y/n] "y"
-# Get:1 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 motd-news-config all 12ubuntu4.6 [4352 B]
-# Get:2 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libc6 amd64 2.35-0ubuntu3.8 [3235 kB]
-# Get:3 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 base-files amd64 12ubuntu4.6 [62.5 kB]
-# Get:4 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 bash amd64 5.1-6ubuntu1.1 [769 kB]
-# Get:5 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 bsdutils amd64 1:2.37.2-4ubuntu3.4 [80.9 kB]
-# Get:6 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 coreutils amd64 8.32-4.1ubuntu1.2 [1437 kB]
+[sudo] password for jeff: "*******"
+# Hit:1 http://archive.ubuntu.com/ubuntu jammy InRelease
+# Get:2 http://archive.ubuntu.com/ubuntu jammy-updates InRelease [128 kB]
+# Get:3 http://security.ubuntu.com/ubuntu jammy-security InRelease [129 kB]
+# Hit:4 http://archive.ubuntu.com/ubuntu jammy-backports InRelease
+# Get:5 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 Packages [1943 kB]
 # [...]
 
 # - install python
@@ -76,11 +61,8 @@ sudo apt install python3-pip
 # Reading package lists... Done
 # Building dependency tree... Done
 # Reading state information... Done
-# The following additional packages will be installed:
-#   build-essential bzip2 cpp cpp-11 dpkg-dev fakeroot fontconfig-config
-#   fonts-dejavu-core g++ g++-11 gcc gcc-11 gcc-11-base javascript-common
-# [...]
-Do you want to continue? [Y/n] "y"
+# python3-pip is already the newest version (22.0.2+dfsg-1ubuntu0.4).
+# 0 upgraded, 0 newly installed, 0 to remove and 49 not upgraded.
 
 ##########################################################
 # install password generator and ssh
@@ -91,90 +73,81 @@ sudo apt install pwgen
 # Reading package lists... Done
 # Building dependency tree... Done
 # Reading state information... Done
-# The following NEW packages will be installed:
-#   pwgen
-# 0 upgraded, 1 newly installed, 0 to remove and 2 not upgraded.
-# Need to get 17.4 kB of archives.
-# After this operation, 53.2 kB of additional disk space will be used.
-# Get:1 http://archive.ubuntu.com/ubuntu jammy/universe amd64 pwgen amd64 2.08-2build1 [17.4 kB]
-# Fetched 17.4 kB in 0s (45.4 kB/s)
-# Selecting previously unselected package pwgen.
-# (Reading database ... 31448 files and directories currently installed.)
-# Preparing to unpack .../pwgen_2.08-2build1_amd64.deb ...
-# Unpacking pwgen (2.08-2build1) ...
-# Setting up pwgen (2.08-2build1) ...
-# Processing triggers for man-db (2.10.2-1) ...
+# pwgen is already the newest version (2.08-2build1).
+# 0 upgraded, 0 newly installed, 0 to remove and 49 not upgraded.
 
 # - create a password 40 chars, numbers and symbols
 pwgen -y -n 40
-# jeiVee7be"e<chee2aikaLoh7Pohc.eiy6ieT9va
-# daQuu7ooya]beiH:a4ahch1oog3bohk3Pai1Quee
-# se{unaKoo#Ph0Aishaech/ei1ooRo+Xoo3az0ath
-# Sheif3Ohchee6moexiem0lahZooM0yohqu(einge
-# chooreep1pohyeoqu6jaequoRuu`k2paiz7Cai5m
-# deiv1ieNooK7aes4chahv&aeth`ai2theeb/iewa
-# eidee2Aex)oe8eD6cee1iw,ao6bo6eipue/ko8pe
-# egh.oiSuitha6aevu)oyaiYu9ahQu8ieng}iji4u
-# queiCh7chee5kaiqu1quo?aNgu)ph{ae!j^ie7so
-# wah8aesh1aecha4yie0iel1Zie4gee<W9hinooJ3
-# le9Ohk;ee6Abaizoo7wuu9ein2agh)ie]t5jaewu
-# coh}bee7aigaigualoopaht3aij#ais8yei3Eeth
-# Ii}f8boh2Shoo7iey9teeshahngie\zie5aoZoht
-# Aa7Ma6pha8zooCho8yahdied,eixai2ooquahz<a
-# Ahghe(ar~o7shah5wa2rofi'o4heiNgi8Pu#Ghae
-# jie5ahF"u1aecoo(g9aal2thaep2zaSh4joo2noo
-# raedahng%ooyoCei0lei1OoShie,ghoo5vaingei
-# yu3aqu7Eshei9Yei7ree0ThahPeiloH7ShooQu+u
-# gu9eez1OeYaewahs4beip2coo4quuiShaen?ohng
-# gei7Quaeliebo5NooP4oo2eequ5oquai3queB~ah
+# ie?be:n5zohpaiKoc0quathohmaeNgaep6fi1shi
+# fethai1ainei9Kae8Eish|oe8oquei%Yaep/ee7j
+# quietu4or3aeghei0mung7oB{ah}g8ieh1aeJoop
+# ioS0aibae^roh9Dei0ahlo_h7oocix6ohsh4If4r
+# quaep5ilat3Shae|th9ahthof7aewu6PieNuerue
+# aijah2iethaeChai8ZujahHuN'ugh7wie1Oophee
+# ho.im;e+t0oonuhosoo3ohNg}e1Eth7au8wo3iku
+# poh~phugeeghei4baequ0aelef7iepudee4RaiDa
+# chie_lodah"R5eenooL`aita2iezaiW2joegah"X
+# waep6fa8laec4eo+h0eibuu]Mie8ideat!oohie3
+# ohf7nuuquahp@ah7aeD^ae2tai7eiVaeL3naepha
+# ooPieth7voo7Tiesuwi6Uf8peeV,aiVi5gah\qu7
+# eilei0oht2aed8gaewae7oo5sieg@aiCuoSh6ahp
+# boub1ruP0ing1zee=ghooth4ahqu8zooqu2Eepai
+# aeyi3eitu8thahd}ooghoo"PaePhaewee5zah1ph
+# li5uph8aeShu2AeVui1aa4uung[ovohTahJ(utah
+# ozee%ghoo4oL7Och`iisa-a2ohTe^Chei3ahbeip
+# keiQu8IewieC6befu9phahbiwae7xohZai3ja<Qu
+# ohchoh7Aengoe~r9bie7chae1yoor1ohngaic7be
+# aepho0enof'aebi9quaizoog5Fep?oong5thaiz8
 
 # - check if ssh service is running
 sudo service ssh status
-# Unit ssh.service could not be found.
+# ● ssh.service - OpenBSD Secure Shell server
+#      Loaded: loaded (/lib/systemd/system/ssh.service; enabled; vendor preset: enabled)
+#      Active: active (running) since Mon 2024-08-12 14:10:22 CEST; 23h ago
+#        Docs: man:sshd(8)
+#              man:sshd_config(5)
+#    Main PID: 2497 (sshd)
+#       Tasks: 1 (limit: 9465)
+#      Memory: 1.7M
+#      CGroup: /system.slice/ssh.service
+#              └─2497 "sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups"
+
+# Aug 12 14:10:22 DESKTOP-1EDKBU6 systemd[1]: Starting OpenBSD Secure Shell server...
+# Aug 12 14:10:22 DESKTOP-1EDKBU6 sshd[2497]: Server listening on 0.0.0.0 port 22.
+# Aug 12 14:10:22 DESKTOP-1EDKBU6 sshd[2497]: Server listening on :: port 22.
+# Aug 12 14:10:22 DESKTOP-1EDKBU6 systemd[1]: Started OpenBSD Secure Shell server.
 
 # - in wsl install openssh
 sudo apt install openssh-server
 # Reading package lists... Done
 # Building dependency tree... Done
 # Reading state information... Done
-# The following additional packages will be installed:
-#   libwrap0 ncurses-term openssh-sftp-server ssh-import-id
-# Suggested packages:
-#   molly-guard monkeysphere ssh-askpass
-# The following NEW packages will be installed:
-#   libwrap0 ncurses-term openssh-server openssh-sftp-server ssh-import-id
-# 0 upgraded, 5 newly installed, 0 to remove and 2 not upgraded.
-# Need to get 800 kB of archives.
-# After this operation, 6161 kB of additional disk space will be used.
-Do you want to continue? [Y/n] "y"
-# Get:1 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 openssh-sftp-server amd64 1:8.9p1-3ubuntu0.7 [38.9 kB]
-# Get:2 http://archive.ubuntu.com/ubuntu jammy/main amd64 libwrap0 amd64 7.6.q-31build2 [47.9 kB]
-# Get:3 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 openssh-server amd64 1:8.9p1-3ubuntu0.7 [435 kB]
-# Get:4 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 ncurses-term all 6.3-2ubuntu0.1 [267 kB]
-# [...]
+# openssh-server is already the newest version (1:8.9p1-3ubuntu0.10).
+# 0 upgraded, 0 newly installed, 0 to remove and 49 not upgraded.
 
 # - create keypair
 cd
 mkdir .ssh
 chmod 740 .ssh/
-ssh-keygen -t rsa -b 4096 -f ~/.ssh/hp.envy
-Enter passphrase (empty for no passphrase): "jie5ahF"u1aecoo(g9aal2thaep2zaSh4joo2noo"
-Enter same passphrase again: "jie5ahF"u1aecoo(g9aal2thaep2zaSh4joo2noo"
-# Your identification has been saved in /home/aliz/.ssh/hp.envy
-# Your public key has been saved in /home/aliz/.ssh/hp.envy.pub
+ssh-keygen -t rsa -b 4096 -f ~/.ssh/jeff.love.hp
+# Generating public/private rsa key pair.
+Enter passphrase (empty for no passphrase): "q4fZq185VKt7LgdNSP5W7A"
+Enter same passphrase again: "q4fZq185VKt7LgdNSP5W7A"
+# Your identification has been saved in /home/jeff/.ssh/jeff.love.hp
+# Your public key has been saved in /home/jeff/.ssh/jeff.love.hp.pub
 # The key fingerprint is:
-# SHA256:Un3e+5u2Pg7E1jljVztwc1GXWVzi5NZ0JBDfgDu0VPs aliz@AliZ
+# SHA256:ciWPCVw/ZDOCjyJ2rBHBgnCEPe2SModZJvTS8c+EgHk jeff@DESKTOP-1EDKBU6
 # The key's randomart image is:
 # +---[RSA 4096]----+
-# |            o=*+#|
-# |         .  += @=|
-# |        . .o.+*o=|
-# |       .   o=o+.*|
-# |      . S   .=.OE|
-# |       .    o ..=|
-# |             ..  |
-# |              .+.|
-# |              +*=|
+# |=**=   .o =      |
+# |=+XE=.o. = o     |
+# | O.O oo+. +      |
+# |= O = =..* .     |
+# | = * ..oS .      |
+# |  .    o         |
+# |                 |
+# |                 |
+# |                 |
 # +----[SHA256]-----+
 
 # - start ssh service
@@ -182,8 +155,8 @@ sudo service ssh start
 
 # - allow ssh in firewall
 sudo ufw allow ssh
-# Rules updated
-# Rules updated (v6)
+# Skipping adding existing rule
+# Skipping adding existing rule (v6)
 
 ##########################################################
 # upload public keypair to github
@@ -195,19 +168,18 @@ sudo apt install git
 # Building dependency tree... Done
 # Reading state information... Done
 # git is already the newest version (1:2.34.1-1ubuntu1.11).
-# git set to manually installed.
-# 0 upgraded, 0 newly installed, 0 to remove and 2 not upgraded.
+# 0 upgraded, 0 newly installed, 0 to remove and 49 not upgraded.
 
 # - fetch pubkey
-cat .ssh/hp.envy.pub
-# ****************
+cat .ssh/jeff.love.hp.pub
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC9k0l4ph3nYHvHUz6CPsrH/NgnUBS6IylccF5GeEH2vHLjkZ9lFIqOLs8MKcwS2+vlULDuYsTugQEJCKmp81N1xJ2QlWXktma5jNJwfqesJ/kppQ2r8hL5UEp6fw/B81/Z+zExrQnFQyizJHKWS46+OtTJ0eLXU1V7dYmdmbY37hlDzNY8zAsduEl4+qFa8jOCmRwc8pnkKfA+DPxdhBAFSDs1bzpfJsKxN6ECvZ9tgZ0xZQWTe5QITgwHSRSDqtM88qnTAb5bEunA2INqUMZUS4P0gbgNSZkKbEIOAxJHkdqcYZXPiNeIRFc34U7MTGn34nS99omeL5nr4wldagFEKyyHSP9ePb54RFXF/c/ZgYlN36S315flHqlN4+gULopjpH/z9ktqmsbWazlWPNKoUYCt+UiWsq3HzOOP0sOEB7PAGpgZy+2FzabkCsb3AIRsxlZhGx9cJRlL2vZeC6lKS/hTKvLSVzM8+15n8e74Ar4bwkiGu0vsM9a+gaVSIVpq21rRak/jDlptgKz6vMn/cCwXMqHfpcevuLTe8aQc7LSkySPqvzPiCxq4tbuOcpmv5ZiRi1cMBpDLsYe/I5++YStWyBNF8EWYj81UMiOika/HQwD224lxY3lNW8FoYTuV18Jn/gUpQ/iEnbRklyRRdlKUs1M9rZJyjJcAaJhy2Q== jeff@DESKTOP-1EDKBU6
 
-# - upload to github
+# - upload to github through web browser
 "https://github.com/settings/ssh/new"
 
 # Add new SSH Key
 # Title
-"hp.envy"
+"jeff.love.hp"
 
 # Key type
 "[Authentication Key↕]"
@@ -222,8 +194,15 @@ cat <<"EOF" > ~/.ssh/config
 Host github.com
   HostName github.com
   User git
-  IdentityFile ~/.ssh/hp.envy
+  IdentityFile ~/.ssh/jeff.love.hp
 EOF
+
+# - Verify file
+cat ~/.ssh/config
+# Host github.com
+#   HostName github.com
+#   User git
+#   IdentityFile ~/.ssh/jeff.love.hp
 
 # - Create source directory
 cd
@@ -231,47 +210,66 @@ mkdir src
 cd src
 
 # - Clone repo
-git clone git@github.com:JensenEducationKista/KB-SEP23.git
-# Cloning into 'KB-SEP23'...
-Enter passphrase for key '/home/aliz/.ssh/hp.envy': "******"
-# remote: Enumerating objects: 20, done.
-# remote: Counting objects: 100% (20/20), done.
-# remote: Compressing objects: 100% (13/13), done.
-# remote: Total 20 (delta 5), reused 18 (delta 3), pack-reused 0
-# Receiving objects: 100% (20/20), 11.29 KiB | 2.26 MiB/s, done.
-# Resolving deltas: 100% (5/5), done.
+git clone git@github.com:JensenEducationKista/MAR24.git
+# Cloning into 'MAR24'...
+# The authenticity of host 'github.com (140.82.121.3)' can't be established.
+# ED25519 key fingerprint is SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU.
+# This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? "yes"
+# Warning: Permanently added 'github.com' (ED25519) to the list of known hosts.
+Enter passphrase for key '/home/jeff/.ssh/jeff.love.hp': "******"
+# remote: Enumerating objects: 21, done.
+# remote: Counting objects: 100% (21/21), done.
+# remote: Compressing objects: 100% (15/15), done.
+# remote: Total 21 (delta 8), reused 16 (delta 4), pack-reused 0 (from 0)
+# Receiving objects: 100% (21/21), 14.31 KiB | 16.00 KiB/s, done.
+# Resolving deltas: 100% (8/8), done.
 
 # - Push changes to remote repository
-cd KB-SEP23/Group3
-mkdir ali
-cd ali
-cd
-cd src/KB-SEP23/
+cd MAR24
+mkdir jeff
+cd jeff
 git status
 # On branch main
 # Your branch is up to date with 'origin/main'.
-
-# Untracked files:
-#   (use "git add <file>..." to include in what will be committed)
-#         Group3/ali/
-
-# nothing added to commit but untracked files present (use "git add" to track)
-git checkout -b "ali_doc_verification"
-git add *
-git status
-# On branch main
-# Your branch is up to date with 'origin/main'.
-
-# Changes to be committed:
-#   (use "git restore --staged <file>..." to unstage)
-#         new file:   Group3/ali/github.ssh.access.winx.2024.06.14.sh
-git config --global user.name "Ali Zabihi"
-git config --global user.email no@email.com
-git commit -am "verify previous documentation"
-# On branch main
-# Your branch is ahead of 'origin/main' by 1 commit.
-#   (use "git push" to publish your local commits)
 
 # nothing to commit, working tree clean
-git push --set-upstream origin ali_doc_verification
+
+# - Copy and paste line 1 -239 to wsl using text editor of choise
+
+##########################################################
+# push to remote
+##########################################################
+
+git checkout -b "update-old-doc-for-consistency"
+git add github.ssh.access.winx.2024.08.13
+git status
+# On branch update-old-doc-for-consistency
+# Changes to be committed:
+#   (use "git restore --staged <file>..." to unstage)
+#         new file:   github.ssh.access.winx.2024.08.13
+
+git config --global user.name "jeff"
+git config --global user.email no@email.com
+git commit -am "update-old-doc-for-consistency"
+# [update-old-doc-for-consistency 2521269] update-old-doc-for-consistency
+#  1 file changed, 239 insertions(+)
+#  create mode 100644 jeff/github.ssh.access.winx.2024.08.13
+git push --set-upstream origin update-old-doc-for-consistency
+
+Enter passphrase for key '/home/jeff/.ssh/jeff.love.hp': "******"
+# Enumerating objects: 5, done.
+# Counting objects: 100% (5/5), done.
+# Delta compression using up to 4 threads
+# Compressing objects: 100% (4/4), done.
+# Writing objects: 100% (4/4), 4.32 KiB | 738.00 KiB/s, done.
+# Total 4 (delta 1), reused 0 (delta 0), pack-reused 0
+# remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+# remote:
+# remote: Create a pull request for 'update-old-doc-for-consistency' on GitHub by visiting:
+# remote:      https://github.com/JensenEducationKista/MAR24/pull/new/update-old-doc-for-consistency
+# remote:
+# To github.com:JensenEducationKista/MAR24.git
+#  * [new branch]      update-old-doc-for-consistency -> update-old-doc-for-consistency
+# Branch 'update-old-doc-for-consistency' set up to track remote branch 'update-old-doc-for-consistency' from 'origin'.
 
