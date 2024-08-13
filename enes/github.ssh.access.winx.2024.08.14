@@ -1,0 +1,241 @@
+#!/bin/sh
+echo This is a vodka-bottle-documentation, sorry, no automation at this time, :-/
+exit 1
+
+##########################################################
+# Windows Subsystem for Linux Installation by enes
+##########################################################
+
+# - Open Windows PowerShell or cmd
+# wsl --install -d ubuntu
+# Ubuntu har redan installerats.
+# Startar Ubuntu ...
+
+# Ubuntu is already installed.
+# Launching Ubuntu...
+# Installing, this may take a few minutes...
+# Please create a default UNIX user account. The username does not need to match your Windows username.
+# For more information visit: https://aka.ms/wslusers
+Enter new UNIX username: "enes"
+New password: "**********"
+Retype new password: "**********"
+# passwd: password updated successfully
+# Installation successful!
+# To run a command as administrator (user "root"), use "sudo <command>".
+# See "man sudo_root" for details.
+
+# Welcome to Ubuntu 22.04.3 LTS (GNU/Linux 5.15.153.1-microsoft-standard-WSL2 x86_64)
+
+#  * Documentation:  https://help.ubuntu.com
+#  * Management:     https://landscape.canonical.com
+#  * Support:        https://ubuntu.com/advantage
+
+
+# This message is shown once a day. To disable it please create the
+# /home/jeff/.hushlogin file.
+
+
+# - Open WSL
+sudo apt update
+[sudo] password for enes: "Turkiet123"
+# Get:1 http://security.ubuntu.com/ubuntu jammy-security InRelease [129 kB]
+# Hit:2 http://archive.ubuntu.com/ubuntu jammy InRelease
+# Get:3 http://archive.ubuntu.com/ubuntu jammy-updates InRelease [128 kB]
+# Get:4 http://security.ubuntu.com/ubuntu jammy-security/main amd64 Packages [1724 kB]
+# [...]
+
+# - install python
+sudo apt install python3-pip
+# Reading package lists... Done
+# Building dependency tree... Done
+# Reading state information... Done
+# The following additional packages will be installed:
+# [...]
+
+##########################################################
+# install password generator and ssh
+##########################################################
+
+# - install password generator
+sudo apt install pwgen
+# reading package lists... Done
+# Building dependency tree... Done
+# Reading state information... Done
+# The following additional packages will be installed:
+# [...]
+
+# - create a password 40 chars, numbers and symbols
+pwgen -y -n 40
+# eeSheet)ohree4achiech5eepaivei9cae4joogh
+# nah"ceithah!ngeed/og1luiNoo5yohzae3Aequ~
+# fei3efongoo_c!ei6roo8eLouY9sie&Diem{oh3I
+# teichiePe~l?ieVogoo8ao9Mu0EiQuicoth0AeNg
+# ohNg6Hoojah0aid=ohn4cha6uepei!nee9aij1Po
+# ohh"o\jae!sie4Mee6eame'ibairaenae3aePho3
+# tu9ohku8nooch0laiz6Eif5meiS3uew7Fi!qu8ot
+# ahb]aing0oth3tie9ed7iu9Ahbah_J3eu5io7aa)
+# oo5thie4Loqu5yaith4aibaih)ah9ahgeed]o5pi
+# ohth3IeGhie0eBiz`uacae3quier$e*k4IeT(oa/
+# iph7thohGh\ae3ies5OShei4Eebep4Thoobohqua
+# aamu1Aroo8doon9gohk8ootaef.uac{e&eB<iki<
+# ifaige5Phee,leesh1EeSh8oor0ichaiMaThe6te
+# ahh'o-YuPheedai8ohith>ae'gh>io7Ieroo;n0d
+# ahPah5oS1Aocie3Chiebufae8siech*ophiafie[
+# zierolikevahghaijoh4Gees1la-xo0loaf|ou?n
+# aiph8Chee!quechaiz?ee7keedae9Si~paequoe%
+# LiiDiengeela9Mie0eek4phohvoodow(ohngoo6i
+# eel3ieBe2Eed6oNoo:Gaich7Waep5jahqu1ahque
+# Thei7izooThephufo~th;ie\ghoon4Do8ahf^ae3
+
+# - check if ssh service is running
+sudo service ssh status
+# ssh.service - OpenBSD Secure Shell server
+     # Loaded: loaded (/lib/systemd/system/ssh.service; enabled; vendor preset: enabled)
+     # Active: active (running) since Tue 2024-08-13 22:28:27 CEST; 3min 11s ago
+       # Docs: man:sshd(8)
+             # man:sshd_config(5)
+   # Main PID: 2552 (sshd)
+      # Tasks: 1 (limit: 9370)
+     # Memory: 1.7M
+     # CGroup: /system.slice/ssh.service
+             # └─2552 "sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups"
+
+# Aug 13 22:28:27 EK-PC systemd[1]: Starting OpenBSD Secure Shell server...
+# Aug 13 22:28:27 EK-PC sshd[2552]: Server listening on 0.0.0.0 port 22.
+# Aug 13 22:28:27 EK-PC sshd[2552]: Server listening on :: port 22.
+# Aug 13 22:28:27 EK-PC systemd[1]: Started OpenBSD Secure Shell server.
+
+
+# - in wsl install openssh
+sudo apt install openssh-server
+# Reading package lists... Done
+# Building dependency tree... Done
+# Reading state information... Done
+# The following additional packages will be installed:
+# [...]
+
+# - create keypair
+cd
+mkdir .ssh
+chmod 740 .ssh/
+ssh-keygen -t rsa -b 4096 -f ~/.ssh/enes.asus
+# Generating public/private rsa key pair.
+Enter passphrase (empty for no passphrase): "eeSheet)ohree4achiech5eepaivei9cae4joogh"
+Enter same passphrase again: "eeSheet)ohree4achiech5eepaivei9cae4joogh"
+# Generating public/private rsa key pair.
+# Your identification has been saved in /home/enes/.ssh/enes.asus
+# Your public key has been saved in /home/enes/.ssh/enes.asus.pub
+# The key fingerprint is:
+# SHA256:bhAuEb1C99GuP9c3tl0pou9aew0Co/l9/EupOWWypCU enes@EK-PC
+# The key's randomart image is:
+# +---[RSA 4096]----+
+# |    ..   .       |
+# |    ..o . .      |
+# |   ....o o       |
+# |    .o...o.      |
+# |    ..o S.o      |
+# |     . =.  E = oo|
+# |        +..oBoB+.|
+# |       . .=o+**++|
+# |         o+*oo+==|
+# +----[SHA256]-----+
+
+# - start ssh service
+sudo service ssh start
+
+# - allow ssh in firewall
+sudo ufw allow ssh
+# Rules updated
+# Rules updated (v6)
+
+##########################################################
+# upload public keypair to github
+##########################################################
+
+# - install git
+sudo apt install git
+# Reading package lists... Done
+# Building dependency tree... Done
+# Reading state information... Done
+# Suggested packages:
+#   git-daemon-run | git-daemon-sysvinit git-doc git-email git-gui gitk gitweb git-cvs git-mediawiki git-svn
+# The following packages will be upgraded:
+#   git
+# 1 upgraded, 0 newly installed, 0 to remove and 110 not upgraded.
+# Need to get 3165 kB of archives.
+# After this operation, 16.4 kB of additional disk space will be used.
+# Get:1 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 git amd64 1:2.34.1-1ubuntu1.11 [3165 kB]
+# Fetched 3165 kB in 0s (6649 kB/s)
+# debconf: unable to initialize frontend: Dialog
+# debconf: (Dialog frontend requires a screen at least 13 lines tall and 31 columns wide.)
+# debconf: falling back to frontend: Readline
+# (Reading database ... 34305 files and directories currently installed.)
+# Preparing to unpack .../git_1%3a2.34.1-1ubuntu1.11_amd64.deb ...
+# Unpacking git (1:2.34.1-1ubuntu1.11) over (1:2.34.1-1ubuntu1.10) ...
+# Setting up git (1:2.34.1-1ubuntu1.11) ...
+
+# - fetch pubkey
+
+cat .ssh/enes.asus.pub
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDkFbaD4aQmBz2S3j7FDSsjQPoa7Mbh7FMJ9raRKGEEg/bEvvo7KLaQt81gA5o/7EXRP9A5EBa4gYSBgylqKFMjVXZkfFeCz8xmgA22AsN1l2xmeL/A7VYkdQwAv458THyCDg3Q90RLYGvOQgScWvHDLmCY1wky+DOBcx1f13BGzI0S6TvT6X/LqW435u8WWudAw2HWk1rFuuR2oiKeSaV2Embg86y/OWGaOfqtfmo1Cmwcr4TWDl2dz4E9po8zPB6otFLI8SulJKUvQW/rdLhBH9E1heReS8NB4q/dVYBfZHr1WlGyDB8EvyiUsWVomc9DwE8mIMbAcc3Ns678RhlMkNsoUmkr/ZvOwexuzs70TG7bVw37qx/2O1g/V3UMlKEYZyJUomTKafVU2nU7oWTKt5nRndBPZ4Iq3nP1T4nS6p6sNoVKUnU504D4AlYoCJLnSl90nLs9SLk41wTr81HqeaaJzNjQQQEhHDHBPu6jMSVm9FiFwWnlNLaX5Wl3XATcRVlYtRF+RI++Ivw2x85xWuWxVI4sTg1QTK4feqh0axXKiY7lh9sww0qS+emdMkM/BDEZu8TmEhSbgBRvUqd+QxD9UBMrjY7YVfl0bIm0FNvQmsavrqu/0cRXXvjASixhnOp49/iuaXx+N8W4Rzpyen2B7hW2Z59VJHoYt8HCCw== enes@EK-PC
+
+# - upload to github through web browser
+"https://github.com/settings/ssh/new"
+
+# Add new SSH Key
+# Title
+"enes.asus"
+
+# Key type
+"[Authentication Key↕]"
+
+# Key
+"****************"
+
+"Add SSH key"
+
+# - create ssh config file
+cat <<"EOF" > ~/.ssh/config
+Host github.com
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/enes.asus
+EOF
+
+# - Verify file
+cat ~/.ssh/config
+# Host github.com
+#   HostName github.com
+#   User git
+#   IdentityFile ~/.ssh/enes.asus
+
+# - Create source directory
+cd
+mkdir src
+cd src
+
+# - Clone repo
+git clone git@github.com:JensenEducationKista/MAR24.git
+# Cloning into 'MAR24'...
+# The authenticity of host 'github.com (140.82.121.4)' can't be established.
+# ED25519 key fingerprint is SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU.
+# This key is not known by any other names
+# Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+# Warning: Permanently added 'github.com' (ED25519) to the list of known hosts.
+# Enter passphrase for key '/home/enes/.ssh/enes.asus':
+# remote: Enumerating objects: 35, done.
+# remote: Counting objects: 100% (35/35), done.
+# remote: Compressing objects: 100% (27/27), done.
+# remote: Total 35 (delta 14), reused 24 (delta 6), pack-reused 0 (from 0)
+# Receiving objects: 100% (35/35), 22.26 KiB | 22.26 MiB/s, done.
+# Resolving deltas: 100% (14/14), done.
+
+# - Push changes to remote repository
+cd MAR24
+mkdir enes
+cd enes
+git status
+# On branch main
+# Your branch is up to date with 'origin/main'.
+
+# nothing to commit, working tree clean
