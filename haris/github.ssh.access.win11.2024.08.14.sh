@@ -3,7 +3,7 @@ echo This is a vodka-bottle-documentation, sorry, no automation at this time, :-
 exit 1
 
 ##########################################################
-# Windows Subsystem for Linux Installation by Jeff
+# Windows Subsystem for Linux Installation by Haris. M
 ##########################################################
 
 # - wsl has already been installed
