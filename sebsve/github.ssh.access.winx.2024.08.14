@@ -36,12 +36,12 @@ Retype new password: "123Sebbe@"
 
 
 # This message is shown once a day. To disable it please create the
-# /home/jeff/.hushlogin file.
+# /home/sebsve83/.hushlogin file.
 
 
 # - Open WSL
 sudo apt update
-[sudo] password for jeff: "123Sebbe@"
+[sudo] password for sebsve83: "123Sebbe@"
 # Hit:1 http://archive.ubuntu.com/ubuntu jammy InRelease
 # Get:2 http://archive.ubuntu.com/ubuntu jammy-updates InRelease [128 kB]
 # Get:3 http://archive.ubuntu.com/ubuntu jammy-backports InRelease [127 kB]
