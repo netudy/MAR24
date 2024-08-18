@@ -1,0 +1,216 @@
+#!/bin/sh
+echo This is a vodka-bottle-documentation, sorry, no automation at this time, :-/
+exit 1
+
+##########################################################
+# Windows Subsystem for Linux Installation by hamza
+##########################################################
+
+# - Open Windows PowerShell or cmd
+wsl --install -d ubuntu
+# Ubuntu is already installed.
+# Launching Ubuntu...
+
+# - reboot computer
+# - after reboot Ubuntu cmd will pop up:
+
+# Ubuntu is already installed.
+# Launching Ubuntu...
+# Installing, this may take a few minutes...
+# Please create a default UNIX user account. The username does not need to match your Windows username.
+# For more information visit: https://aka.ms/wslusers
+Enter new UNIX username: "hamza"
+New password: "0000"
+Retype new password: "0000"
+# passwd: password updated successfully
+# Installation successful!
+# To run a command as administrator (user "root"), use "sudo <command>".
+# See "man sudo_root" for details.
+
+# Welcome to Ubuntu 22.04.3 LTS (GNU/Linux 5.15.153.1-microsoft-standard-WSL2 x86_64)
+
+#  * Documentation:  https://help.ubuntu.com
+#  * Management:     https://landscape.canonical.com
+#  * Support:        https://ubuntu.com/advantage
+
+
+# This message is shown once a day. To disable it please create the
+# /home/hamza/.hushlogin file.
+
+
+# - Open WSL
+sudo apt update
+[sudo] password for hamza: "0000"
+# Get:1 http://security.ubuntu.com/ubuntu jammy-security InRelease [129 kB]
+# Hit:2 http://archive.ubuntu.com/ubuntu jammy InRelease
+# Get:3 http://archive.ubuntu.com/ubuntu jammy-updates InRelease [128 kB]
+# Get:4 http://security.ubuntu.com/ubuntu jammy-security/main amd64 Packages [1729 kB]
+# [...]
+
+
+# - install python
+sudo apt install python3-pip
+# Reading package lists... Done
+# Building dependency tree... Done
+# Reading state information... Done
+# python3-pip is already the newest version (22.0.2+dfsg-1ubuntu0.4).
+# 0 upgraded, 0 newly installed, 0 to remove and 4 not upgraded.
+
+##########################################################
+# install password generator and ssh
+##########################################################
+
+# - install password generator
+sudo apt install pwgen
+# Reading package lists... Done
+# Building dependency tree... Done
+# Reading state information... Done
+# pwgen is already the newest version (2.08-2build1).
+# 0 upgraded, 0 newly installed, 0 to remove and 4 not upgraded.
+
+# - create a password 40 chars, numbers and symbols
+pwgen -y -n 40
+# yae%c:ae@see3Iesha6naef"e3La#aThohziePal
+# oj-aiHoh0eeteeV8uu=beic@ee0wo+WaiReaY:ee
+# iel>aletheith-iaf5ooxei%B4soaW3us1wooy)o
+# Quae5ceek1oe^va6Ees~icoo0zak.oos8yei0rub
+# aM8zahFaesheiBaefook5fei2zaeghae2vei$d4k
+# Loofae6giloh7Que8cohyeengohxo%gi4mohG4ov
+# ochileez7eefi;Zae8Epei0Fee5iadai%Moh6phi
+# IeRiedo3kohNg2ue^vahsoh3Ahgie4Ucee0aecae
+# ieg!uagheen4Aejeo7eifo>Lei8ookeuthoo4ahh
+# gi(l}ohp\ude7re3Ahxai0aeLuoz0gaish2Aeb1a
+# ie5Eiqu6hu6we0aiyaisaFees@eusheiH8oraeth
+# quohj#eiZiuth!ah5uh2Zeijih0aiB3voo5Zaesh
+# ait=ox?ene0Aekohveib1beP0Zohth#oi^z4zepi
+# aht2oh:u6sheic2oop5hee3zohf3ahVah}r4eoth
+# woo7loh5Ohx8tah8ohziaTh7thaex;ee+z|ee7ie
+# hooX.ah7neeWe@mai&b\ae5ooh$aimeevi1shi1o
+# Loh3pei1ook7ya3eesh6Eic^ae3Eih1aece2vi}u
+# phei4phuf9niel2giw9oJ[eiPie!goo6eixaiy9M
+# tu5Ohhooph9aic/ei!rie,tingae9Pei4oo3Egh3
+# Eekohf4ahh0thelee%Xee2uv,iig2ahph9thoomi
+
+# - check if ssh service is running
+sudo service ssh status
+# * sshd is not running
+ sudo service ssh start
+ # * Starting OpenBSD Secure Shell server sshd                         [ OK ]
+ sudo service ssh status
+ # * sshd is running
+
+# - in wsl install openssh
+sudo apt install openssh-server
+# Reading package lists... Done
+# Building dependency tree... Done
+# Reading state information... Done
+# openssh-server is already the newest version (1:8.9p1-3ubuntu0.10).
+# 0 upgraded, 0 newly installed, 0 to remove and 4 not upgraded.
+
+# - create keypair
+cd
+mkdir .ssh
+# mkdir: cannot create directory ‘.ssh’: File exists
+chmod 740 .ssh/
+ssh-keygen -t rsa -b 4096 -f ~/.ssh/hamza.hp
+# Generating public/private rsa key pair.
+Enter passphrase (empty for no passphrase): "yae%c:ae@see3Iesha6naef"e3La#aThohziePal"
+Enter same passphrase again: "yae%c:ae@see3Iesha6naef"e3La#aThohziePal"
+# Your identification has been saved in /home/hamza/.ssh/hamza.hp
+# Your public key has been saved in /home/hamza/.ssh/hamza.hp.pub
+# The key fingerprint is:
+# SHA256:wryEbqoQr2v+W1FhKOTP87WoMYxvdzG8ftzqZxmIIyY hamza@LAPTOP-0AKJDAO5
+# The key's randomart image is:
+# +---[RSA 4096]----+
+# |  ..  .o         |
+# |  .. .. .        |
+# |   ..  .         |
+# |    o+.          |
+# |.   .== S.. .    |
+# | o .oE+=o*.. .   |
+# |. ..o=+o..* . o  |
+# |.o oo.+. o o =   |
+# |*+oooo. o.oo+    |
+# +----[SHA256]-----+
+
+# - start ssh service
+sudo service ssh start
+ # * Starting OpenBSD Secure Shell server sshd
+
+# - allow ssh in firewall
+sudo ufw allow ssh
+# Skipping adding existing rule
+# Skipping adding existing rule (v6)
+
+##########################################################
+# upload public keypair to github
+##########################################################
+
+# - install git
+sudo apt install git
+# Reading package lists... Done
+# Building dependency tree... Done
+# Reading state information... Done
+# git is already the newest version (1:2.34.1-1ubuntu1.11).
+# 0 upgraded, 0 newly installed, 0 to remove and 4 not upgraded.
+
+# - fetch pubkey
+cat .ssh/hamza.hp.pub
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDkHjNyco5MsVl3LKSvp27HGKq6uPYbWQoPKj9TTozVZXUpsXC7O2eBDBcOB1Ov2QsFNsQ+mjS3ugHCwjncwFaF6ngtnGjB32j6L7aDhUBu7/u2Vp9IqtlnR94ZJRfzClfTO6aX2NrKi9izWWfUByXuZF7v4FfNIxdhedNCxs4gs9sJQmshcnCp4Ceu+bNfWVn6iO1BGIYM+Syhq5qlfznWaTbyF6v7bM7SShVskRSMzztbaxfWPC/JvmW5WEBvWy9WoVRGTmdocean19gegFtgnlRpZjVMQ14vcFWgnG9RZzNbuETuBsevivvvJ7REqEqD27ICShTalkYZUiHl10Xs4EkdYh/+gYaFV5jpYCY8sJ6lAuAtje6qne46v9OFfnQwmbJvctUftCjbiL6vQyDJgY+bIZXwW7ztDUJ+jLZ4BHrE/kerh5/zLw2KtwWtN/PZrdzezl8zYedKfywhH2BihGrUqZw2T88gKipphNUttKpKdIPMh6dS5T2qEvHm8WlkU9GtDMkrh5ErtRlz17SfJzvtqwOVSpXvCvBFyWlBLfpumZKgshMUnob0ePUxbc22pBvUlWrV2o1SdBEB+jqaQN7Lp6S/zWWVv02y+KiC1MhTNVOAvTwWjBUu9vBONsjuORFSQX0aA8gooPTH97SN3NEBWMSBvbr3R/bQtREsWw== hamza@LAPTOP-0AKJDAO5
+
+# - upload to github through web browser
+"https://github.com/settings/ssh/new"
+
+# Add new SSH Key
+# Title
+"hamza.hp"
+
+# Key type
+"[Authentication Key↕]"
+
+# Key
+"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDkHjNyco5MsVl3LKSvp27HGKq6uPYbWQoPKj9TTozVZXUpsXC7O2eBDBcOB1Ov2QsFNsQ+mjS3ugHCwjncwFaF6ngtnGjB32j6L7aDhUBu7/u2Vp9IqtlnR94ZJRfzClfTO6aX2NrKi9izWWfUByXuZF7v4FfNIxdhedNCxs4gs9sJQmshcnCp4Ceu+bNfWVn6iO1BGIYM+Syhq5qlfznWaTbyF6v7bM7SShVskRSMzztbaxfWPC/JvmW5WEBvWy9WoVRGTmdocean19gegFtgnlRpZjVMQ14vcFWgnG9RZzNbuETuBsevivvvJ7REqEqD27ICShTalkYZUiHl10Xs4EkdYh/+gYaFV5jpYCY8sJ6lAuAtje6qne46v9OFfnQwmbJvctUftCjbiL6vQyDJgY+bIZXwW7ztDUJ+jLZ4BHrE/kerh5/zLw2KtwWtN/PZrdzezl8zYedKfywhH2BihGrUqZw2T88gKipphNUttKpKdIPMh6dS5T2qEvHm8WlkU9GtDMkrh5ErtRlz17SfJzvtqwOVSpXvCvBFyWlBLfpumZKgshMUnob0ePUxbc22pBvUlWrV2o1SdBEB+jqaQN7Lp6S/zWWVv02y+KiC1MhTNVOAvTwWjBUu9vBONsjuORFSQX0aA8gooPTH97SN3NEBWMSBvbr3R/bQtREsWw== hamza@LAPTOP-0AKJDAO5"
+
+"Add SSH key"
+
+# - create ssh config file
+cat <<"EOF" > ~/.ssh/config
+Host github.com
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/hamza.hp
+EOF
+
+# - Verify file
+cat ~/.ssh/config
+# Host github.com
+#   HostName github.com
+#   User git
+#   IdentityFile ~/.ssh/hamza.hp
+
+# - Create source directory
+cd
+mkdir src
+#mkdir: cannot create directory ‘src’: File exists
+cd src
+
+# - Clone repo
+git clone git@github.com:JensenEducationKista/MAR24.git
+# Cloning into 'MAR24'...
+# Enter passphrase for key '/home/hamza/.ssh/hamza.hp': yae%c:ae@see3Iesha6naef"e3La#aThohziePal
+# remote: Enumerating objects: 86, done.
+# remote: Counting objects: 100% (86/86), done.
+# remote: Compressing objects: 100% (67/67), done.
+# remote: Total 86 (delta 33), reused 65 (delta 15), pack-reused 0 (from 0)
+# Receiving objects: 100% (86/86), 40.53 KiB | 466.00 KiB/s, done.
+# Resolving deltas: 100% (33/33), done.
+
+# - Push changes to remote repository
+cd MAR24
+mkdir hamza-v2
+cd hamza-v2
+git status
+# On branch main
+# Your branch is up to date with 'origin/main'.
+
+# nothing to commit, working tree clean
