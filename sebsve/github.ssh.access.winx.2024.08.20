@@ -1,0 +1,234 @@
+#!/bin/sh
+echo This is a vodka-bottle-documentation, sorry, no automation at this time, :-/
+exit 1
+
+##########################################################
+# Windows Subsystem for Linux Installation by Sebastian.S.
+##########################################################
+
+# - Open Windows PowerShell or cmd
+wsl --install -d ubuntu
+# Ubuntu is already installed.
+# Launching Ubuntu...
+
+# Installing, this may take a few minutes...
+# Please create a default UNIX user account. The username does not need to match your Windows username.
+# For more information visit: https://aka.ms/wslusers
+Enter new UNIX username: "sebsve"
+New password: "0000"
+Retype new password: "0000"
+# passwd: password updated successfully
+# Installation successful!
+# To run a command as administrator (user "root"), use "sudo <command>".
+# See "man sudo_root" for details.
+
+# Welcome to Ubuntu 22.04.3 LTS (GNU/Linux 5.10.16.3-microsoft-standard-WSL2 x86_64)
+
+#  * Documentation:  https://help.ubuntu.com
+#  * Management:     https://landscape.canonical.com
+#  * Support:        https://ubuntu.com/advantage
+
+# - Open WSL
+sudo apt update
+[sudo] password for sebsve: "0000"
+# Get:1 http://security.ubuntu.com/ubuntu jammy-security InRelease [129 kB]
+# Hit:2 http://archive.ubuntu.com/ubuntu jammy InRelease
+# Get:3 http://archive.ubuntu.com/ubuntu jammy-updates InRelease [128 kB]
+# Get:4 http://security.ubuntu.com/ubuntu jammy-security/main amd64 Packages [1729 kB]
+# Get:5 http://archive.ubuntu.com/ubuntu jammy-backports InRelease [127 kB]
+# Get:6 http://archive.ubuntu.com/ubuntu jammy/universe amd64 Packages [14.1 MB]
+# [...]
+
+# - install python
+sudo apt install python3-pip
+# Reading package lists... Done
+# Building dependency tree... Done
+# Reading state information... Done
+# The following additional packages will be installed:
+#   build-essential bzip2 cpp cpp-11 dpkg-dev fakeroot fontconfig-config fonts-dejavu-core g++ g++-11 gcc gcc-11
+#   gcc-11-base javascript-common libalgorithm-diff-perl libalgorithm-diff-xs-perl libalgorithm-merge-perl libasan6
+#   libatomic1 libc-dev-bin libc-devtools libc6 libc6-dev libcc1-0 libcrypt-dev libdeflate0 libdpkg-perl libexpat1
+# [...]
+
+##########################################################
+# install password generator and ssh
+##########################################################
+
+# - install password generator
+sudo apt install pwgen
+# Reading package lists... Done
+# Building dependency tree... Done
+# Reading state information... Done
+# The following NEW packages will be installed:
+#   pwgen
+# 0 upgraded, 1 newly installed, 0 to remove and 113 not upgraded.
+# Need to get 17.4 kB of archives.
+# [...]
+
+# - create a password 40 chars, numbers and symbols
+pwgen -y -n 40
+# chuxoSh6onek6Chojoh%th}uz;eiGh9phe9angie
+# roxo8AiGaa0seiyeshix6iec$ei2ip4ohle6eiRa
+# nu5mak3fee8eiRoi<k[aegh2mai6kee4aisho6ye
+# ahNei0taec8meir7si)Bohah~pee6ohqu6AeRa2d
+# chooGhuu3EQuo!a6AeW4ohSa3aiJo2oogahpuh1o
+# us3Da_ab@ai1aehooj3AetheeNgah6eSh;ah4aim
+# Va%CaeC4Ohsh7isai2Yievie2eipiejoDae6aiqu
+# thad3fuif1izaighahng6Phomai8jie?hohth`ah
+# ahnei2ohquai/thee2Yah3aiMaequeiD/eiJ;ohd
+# ohm=aes]oeS7thenee7ohnohy)ao9ee8gaiteini
+# ohgoh3eng`ohj7xa1iax.oh|l0oovae@x3Ool=ie
+# wii0geHahchan0cheil4ein7mo5ahxai0ieb)asi
+# maanai0keurai)viexe0asheZiu1eewaiy:aejie
+# jie2Eita9foo3hie8laef#ei8Leiw1eiGh9yujei
+# oon~ah2cahNgaipo2eo3uthoh0iong6Doh[z9nah
+# ieteogah%cheexohWee9vaiJo6yoi,hei,g\e6oe
+# um3Pua{wuev|e;iph8ahw*io8aekith?oocah2ko
+# ga3foyib4Eeg>oh3needohveochee5ufu+lohtha
+# oaniemo4luqu1ongu2iahoh7oodi|Dai0zi]w3Ra
+# oothohmah5Fo-ph2Eesumav1OoGahGh8Ielo6aiH
+
+# - check if ssh service is running
+sudo service ssh status
+# ssh: unrecognized service
+
+# - in wsl install openssh
+sudo apt install openssh-server
+# Reading package lists... Done
+# Building dependency tree... Done
+# Reading state information... Done
+# The following additional packages will be installed:
+#   libwrap0 ncurses-term openssh-client openssh-sftp-server ssh-import-id
+# Suggested packages:
+#   keychain libpam-ssh monkeysphere ssh-askpass molly-guard
+# The following NEW packages will be installed:
+#   libwrap0 ncurses-term openssh-server openssh-sftp-server ssh-import-id
+# The following packages will be upgraded:
+#   openssh-client
+# [...]
+
+# - create keypair
+cd
+mkdir .ssh
+chmod 740 .ssh/
+ssh-keygen -t rsa -b 4096 -f ~/.ssh/sebsve.acer
+# Generating public/private rsa key pair.
+Enter passphrase (empty for no passphrase): "chuxoSh6onek6Chojoh%th}uz;eiGh9phe9angie"
+Enter same passphrase again: "chuxoSh6onek6Chojoh%th}uz;eiGh9phe9angie"
+# Generating public/private rsa key pair.
+# Enter passphrase (empty for no passphrase):
+# Enter same passphrase again:
+# Your identification has been saved in /home/sebsve/.ssh/sebsve.acer
+# Your public key has been saved in /home/sebsve/.ssh/sebsve.acer.pub
+# The key fingerprint is:
+# SHA256:hEL/1DYrZxK2quFqWweW+emSYZ87KKnuNdYwr/fSO/o sebsve@Chleb
+# The key's randomart image is:
+# +---[RSA 4096]----+
+# |    .            |
+# |   . . . .       |
+# |    . o = +      |
+# |     + = + o     |
+# |   o=   S +      |
+# |   .Bo o =       |
+# |   *oB*.         |
+# |  *o*B+o         |
+# |+=o=+oBEo        |
+# +----[SHA256]-----+
+
+# - start ssh service
+sudo service ssh start
+ # * Starting OpenBSD Secure Shell server sshd
+
+# - allow ssh in firewall
+sudo ufw allow ssh
+# Rules updated
+# Rules updated (v6)
+
+##########################################################
+# upload public keypair to github
+##########################################################
+
+# - install git
+sudo apt install git
+# Reading package lists... Done
+# Building dependency tree... Done
+# Reading state information... Done
+# Suggested packages:
+#   git-daemon-run | git-daemon-sysvinit git-doc git-email git-gui gitk gitweb git-cvs
+#   git-mediawiki git-svn
+# The following packages will be upgraded:
+#   git
+# 1 upgraded, 0 newly installed, 0 to remove and 111 not upgraded.
+# Need to get 3165 kB of archives.
+# After this operation, 16.4 kB of additional disk space will be used.
+# Get:1 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 git amd64 1:2.34.1-1ubuntu1.11 [3165 kB]
+[...]
+
+# - fetch pubkey
+cat .ssh/sebsve.acer.pub
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDVDa0Y1ndh3RPSBOnNe4TNExuQwxLsotGUkopOcgXUDCK9MXhEA+nj3v3ikLhAFKtecYd65rpJsikjSN81LP0eKJdhNqC0QfrhOrI6OkpnvJ2aa6kmW5QoSpWBTCspVbxw79FZVq1M0zQtFm5qWO/b/ACWk9oWSFiqecwI8Nx2cLDEvJ7MBkngtufXu8aZOZOrmXb84KYhkLirLzviW70uy2+lbGxU/KgfFz21V5g6q34RczhuyfKU8IkSHSUbuC/jB07atFWL2/yhtrl9DuoflCMxZ7yWOocybbsR9f0i+HhCwYWRdzcCTx3wO0kV3yv+2fYx7OfrUzx5Pac3ShvKxdLUmewb+20AWddGeC7nKLL88XnyDqXRrguXFZ77VW+mqQKBj29XKREc2f1QGU3suOsnAoWXoyNGalpv+gqgcTFLFl9ZgaQns048iXh/kVgf/zYqgrOFYMsWqIqh88JiMnXvz6nKgNpkYQ/m80gijnOqzIxxpebQ8a7kv7Ibf0+unb7NEB9r9KNlvuSPtoGH33mmCwedRWG3KEZI5lgnZdEt9GcJL3/vyDf/p1kqcMr6l7ff1YnGcs1q6f6FQzBW3MtFhSWrGdcOM3PDWFpjvUU9HD1lG5xf93czgqQsEEwuaTdSUURLlvrOHySizFY5hndYPB306a6DAEm8OdzA1w== sebsve@Chleb
+# - upload to github through web browser
+"https://github.com/settings/ssh/new"
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDVDa0Y1ndh3RPSBOnNe4TNExuQwxLsotGUkopOcgXUDCK9MXhEA+nj3v3ikLhAFKtecYd65rpJsikjSN81LP0eKJdhNqC0QfrhOrI6OkpnvJ2aa6kmW5QoSpWBTCspVbxw79FZVq1M0zQtFm5qWO/b/ACWk9oWSFiqecwI8Nx2cLDEvJ7MBkngtufXu8aZOZOrmXb84KYhkLirLzviW70uy2+lbGxU/KgfFz21V5g6q34RczhuyfKU8IkSHSUbuC/jB07atFWL2/yhtrl9DuoflCMxZ7yWOocybbsR9f0i+HhCwYWRdzcCTx3wO0kV3yv+2fYx7OfrUzx5Pac3ShvKxdLUmewb+20AWddGeC7nKLL88XnyDqXRrguXFZ77VW+mqQKBj29XKREc2f1QGU3suOsnAoWXoyNGalpv+gqgcTFLFl9ZgaQns048iXh/kVgf/zYqgrOFYMsWqIqh88JiMnXvz6nKgNpkYQ/m80gijnOqzIxxpebQ8a7kv7Ibf0+unb7NEB9r9KNlvuSPtoGH33mmCwedRWG3KEZI5lgnZdEt9GcJL3/vyDf/p1kqcMr6l7ff1YnGcs1q6f6FQzBW3MtFhSWrGdcOM3PDWFpjvUU9HD1lG5xf93czgqQsEEwuaTdSUURLlvrOHySizFY5hndYPB306a6DAEm8OdzA1w== sebsve@Chleb
+
+# Add new SSH Key
+# Title
+"sebsve.acer"
+
+# Key type
+"[Authentication Key↕]"
+
+# Key
+"****************"
+
+"Add SSH key"
+
+# - create ssh config file
+cat <<"EOF" > ~/.ssh/config
+Host github.com
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/sebsve.acer
+EOF
+
+# - Verify file
+cat ~/.ssh/config
+# Host github.com
+#   HostName github.com
+#   User git
+#   IdentityFile ~/.ssh/sebsve.acer
+
+# - Create source directory
+cd
+mkdir src
+cd src
+
+# - Clone repo
+git clone git@github.com:JensenEducationKista/MAR24.git
+# Cloning into 'MAR24'...
+# The authenticity of host 'github.com (140.82.121.4)' can't be established.
+# ED25519 key fingerprint is SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU.
+# This key is not known by any other names
+# Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+# Warning: Permanently added 'github.com' (ED25519) to the list of known hosts.
+# Enter passphrase for key '/home/sebsve/.ssh/sebsve.acer':
+# Enter passphrase for key '/home/sebsve/.ssh/sebsve.acer':
+# remote: Enumerating objects: 90, done.
+# remote: Counting objects: 100% (90/90), done.
+# remote: Compressing objects: 100% (70/70), done.
+# remote: Total 90 (delta 35), reused 68 (delta 16), pack-reused 0 (from 0)
+# Receiving objects: 100% (90/90), 42.68 KiB | 480.00 KiB/s, done.
+# Resolving deltas: 100% (35/35), done.
+
+# - Push changes to remote repository
+cd MAR24
+mkdir sebsve
+cd sebsve
+git status
+# On branch main
+# Your branch is up to date with 'origin/main'.
+
+# nothing to commit, working tree clean
+
+# - Copy and paste line 1-233 to wsl using text editor of choise
+vi git add github.ssh.access.winx.2024.08.20
