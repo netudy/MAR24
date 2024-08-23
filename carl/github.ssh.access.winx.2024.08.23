@@ -1,0 +1,258 @@
+#!/bin/sh
+echo This is a vodka-bottle-documentation, sorry, no automation at this time, :-/
+exit 1
+
+##########################################################
+# Windows Subsystem for Linux  by Carl Lind
+##########################################################
+
+# - Open Windows PowerShell or cmd
+ wsl --install -d ubuntu
+# The requested operation requires elevation.
+# Installing: Virtual Machine Platform
+# Virtual Machine Platform has been installed.
+# Installing: Windows Subsystem for Linux
+# Windows Subsystem for Linux has been installed.
+# Installing: Ubuntu
+# Ubuntu has been installed.
+# The requested operation is successful. Changes will not be effective until the system is rebooted.
+
+# - reboot computer
+# - after reboot Ubuntu cmd will pop up:
+
+# Ubuntu is already installed.
+# Launching Ubuntu...
+# Installing, this may take a few minutes...
+# Please create a default UNIX user account. The username does not need to match your Windows username.
+# For more information visit: https://aka.ms/wslusers
+Enter new UNIX username: "carl"
+New password: "0000"
+Retype new password: "0000"
+# passwd: password updated successfully
+# Installation successful!
+# To run a command as administrator (user "root"), use "sudo <command>".
+# See "man sudo_root" for details.
+
+# Welcome to Ubuntu 22.04.3 LTS (GNU/Linux 5.15.153.1-microsoft-standard-WSL2 x86_64)
+
+#  * Documentation:  https://help.ubuntu.com
+#  * Management:     https://landscape.canonical.com
+#  * Support:        https://ubuntu.com/advantage
+
+
+# This message is shown once a day. To disable it please create the
+# /home/aliz/.hushlogin file.
+# aliz@AliZ:~$
+
+# - Open WSL
+sudo apt update
+[sudo] password for carl:"0000"
+# Hit:1 http://archive.ubuntu.com/ubuntu jammy InRelease
+# Get:15 http://archive.ubuntu.com/ubuntu jammy-backports/universe amd64 c-n-f Metadata [672 B]
+# [...]
+# Fetched 6855 kB in 2s (3423 kB/s)
+# Reading package lists... Done
+# Building dependency tree... Done
+# Reading state information... Done
+# 5 packages can be upgraded. Run 'apt list --upgradable' to see them.
+
+sudo apt upgrade
+# Reading package lists... Done
+# Building dependency tree... Done
+# Reading state information... Done
+# Calculating upgrade... Done
+# The following NEW packages will be installed:
+# [...]
+Do you want to continue? [Y/n] "y"
+# Get:1 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 motd-news-config all 12ubuntu4.6 [4352 B]
+# Get:2 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libc6 amd64 2.35-0ubuntu3.8 [3235 kB]
+# Get:3 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 base-files amd64 12ubuntu4.6 [62.5 kB]
+# Get:4 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 bash amd64 5.1-6ubuntu1.1 [769 kB]
+# Get:5 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 bsdutils amd64 1:2.37.2-4ubuntu3.4 [80.9 kB]
+# Get:6 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 coreutils amd64 8.32-4.1ubuntu1.2 [1437 kB]
+# [...]
+
+# - install python
+sudo apt install python3-pip
+# # Reading package lists... Done
+# Building dependency tree... Done
+# Reading state information... Done
+# python3-pip is already the newest version (22.0.2+dfsg-1ubuntu0.4).
+# 0 upgraded, 0 newly installed, 0 to remove and 5 not upgraded.
+
+##########################################################
+# install password generator and ssh
+##########################################################
+
+# - install password generator
+sudo apt install pwgen
+# Reading package lists... Done
+# Building dependency tree... Done
+# Reading state information... Done
+# pwgen is already the newest version (2.08-2build1).
+# 0 upgraded, 0 newly installed, 0 to remove and 5 not upgraded.
+
+# - create a password 40 chars, numbers and symbols
+pwgen -y -n 40
+# nohph3oloh/thie1yet3teiGh2ahj5ohlae{g3ei
+# quie^phahbeithio6vohmof{o8ouw9Gee5ooTeiP
+# rohhai;Fei3veecha~z1Axah-ch6eeye]e6xi3eu
+# ad2uxoopo2uph1jioPheivahkaShe^no\Laomiup
+# thi4vieng6ahmea4Oo]saa3geequ|oobuoFiexoh
+# Boo\to|arooquahj9ae/Bienio4ohghi}R2Ri=w6
+# Ui]m9hohph#ai0lio3ra2cee:ghiu8touGh*uy5A
+# AhtheeteiNie2ahka7phu6Siezi#t}o4hoh5ahne
+# ethu6xeeDujaX8aingeewae9Aez,iiFaeN+oo6xi
+# zahk\ooshieguj6ahy5oot8ahX7no1eit.iewee7
+# ooRua]b6OoB}e7ohbie8Kiulah8ahBah;veiy;ei
+# roh0chaphae'R8giu0lae!zeuC4aShe6wai2ohua
+# Aec0theeLeiSho\lifo<foteeT1aekeT2ahG8Hee
+# bae|vuJadoh4nai3Aet5Aejoogau5ohk5op5aXoh
+# ang5aec9fa0za3fuTahng+oh\xe2oph^oh:Weok{
+# eec:ie%hiexahTeevoojediemaiG3ooNuiy'o.Gh
+# eiXei:x1quuu*p#ai&Th?ooNgoo9woghoo3aepho
+# vaen0aeng1Areef7hu8ugoo|vees,e5ge0eigho3
+# aiqu4fah^j=ohquahthoom/aix8Kah9ChaePheiP
+# eer2phoo%lie{Jeer0AeWooroh#Zie3eiJeech8g
+
+# - check if ssh service is running
+sudo service ssh status
+# ssh.service - OpenBSD Secure Shell server
+#      Loaded: loaded (/lib/systemd/system/ssh.service; enabled; vendor preset: enab>
+#      Active: active (running) since Tue 2024-08-13 13:23:46 CEST; 9h ago
+#        Docs: man:sshd(8)
+#              man:sshd_config(5)
+#     Process: 242 ExecStartPre=/usr/sbin/sshd -t (code=exited, status=0/SUCCESS)
+#    Main PID: 272 (sshd)
+#       Tasks: 1 (limit: 4605)
+#      Memory: 6.3M
+#      CGroup: /system.slice/ssh.service
+#              └─272 "sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups"
+
+# Aug 13 13:23:46 3NW1MG3 systemd[1]: Starting OpenBSD Secure Shell server...
+# Aug 13 13:23:46 3NW1MG3 systemd[1]: Started OpenBSD Secure Shell server.
+# Aug 13 13:23:46 3NW1MG3 sshd[272]: Server listening on 0.0.0.0 port 22.
+# Aug 13 13:23:46 3NW1MG3 sshd[272]: Server listening on :: port 22.
+
+# - in wsl install openssh
+sudo apt install openssh-server
+# #Reading package lists... Done
+# Building dependency tree... Done
+# Reading state information... Done
+# openssh-server is already the newest version (1:8.9p1-3ubuntu0.10).
+# 0 upgraded, 0 newly installed, 0 to remove and 5 not upgraded.
+Do you want to continue? [Y/n] "y"
+# Get:1 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 openssh-sftp-server amd64 1:8.9p1-3ubuntu0.7 [38.9 kB]
+# Get:2 http://archive.ubuntu.com/ubuntu jammy/main amd64 libwrap0 amd64 7.6.q-31build2 [47.9 kB]
+# Get:3 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 openssh-server amd64 1:8.9p1-3ubuntu0.7 [435 kB]
+# Get:4 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 ncurses-term all 6.3-2ubuntu0.1 [267 kB]
+# [...]
+
+# - create keypair
+cd
+mkdir .ssh
+chmod 740 .ssh/
+ssh-keygen -t rsa -b 4096 -f ~/.ssh/carl.dell
+# Generating public/private rsa key pair.
+Enter passphrase (empty for no passphrase): "nohph3oloh/thie1yet3teiGh2ahj5ohlae{g3ei"
+Enter same passphrase again: "nohph3oloh/thie1yet3teiGh2ahj5ohlae{g3ei"
+# Your identification has been saved in /home/carl/.ssh/carl.dell
+# Your public key has been saved in /home/carl/.ssh/carl.dell.pub
+# The key fingerprint is:
+# SHA256:PMgIohCaKaZnPLa1O7CDn0RZIPPYrLhAyViAm9Cr4hE carl@3NW1MG3
+# The key's randomart image is:
+# +---[RSA 4096]----+
+# |*oo              |
+# |*%o.             |
+# |@B=..            |
+# |@E.+ o o         |
+# |*.X o o S        |
+# |+B.+ .   .       |
+# |+.+o.            |
+# |.oo...           |
+# | .o...           |
+# +----[SHA256]-----+
+
+
+# - start ssh service
+sudo service ssh start
+
+# - allow ssh in firewall
+sudo ufw allow ssh
+# Rules updated
+# Rules updated (v6)
+
+##########################################################
+# upload public keypair to github
+##########################################################
+
+# - install git
+sudo apt install git
+# Reading package lists... Done
+# Building dependency tree... Done
+# Reading state information... Done
+# git is already the newest version (1:2.34.1-1ubuntu1.11).
+# git set to manually installed.
+# 0 upgraded, 0 newly installed, 0 to remove and 2 not upgraded.
+
+# - fetch pubkey
+cat ~/.ssh/carl.dell.pub
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDIAEJ2rV+x7hYAMmHuTErajdkLp3+I3CIR1uOPs1wuNisVrL4ZOiRc1RXF1XTE8lyXoF5WerlsAsWFA3wgxRhK+XC4X9UoUqo4upXXaM2ahJeQSfHIX82yxSMfalrVP2uhdSwMwqTfSq+UHwLsxR8KGws7MysJ+PezkJiGr+k1owtJHAfyssBkUX/KFqOCld27rzHcfs77WLCCeZCjXVpd6YBJxB0zjDXm/c0i4AEzLS6e0XZ5uhCDGYNZKkRH6DmI344poQXTBdLR3JnU0pLUC6l+hBm2IOiHBuoynZQrSLxWNfsPk2LHLBbifqaOsg7Cnrxs6hk1/hoarN2t3r3EhLg3M7S1nylb8R+wkrNEY0FhkL4E59wL8HB54oN/NK/vx/p5j5yvT5rG+dHoV8pAYSFwpjICgW7tSzZtFIpHfdLj0+2kSF0E/DK7BtAxsoqXq7TkG49OAnrZS797GXt4s+MufGwafeEYSTW/nyXjE14c6QE3lfOPYdrj9qGThkBO4V30loIj3X5etY45kaI1w+hcqlS7Kq2CKQ6/w2/0vIwKJ7uRSPjvd77KcsJUAicSvvBms/XoQrsB6RNlIxVu7oHvAn297XaF4eKV0T6NuI1HZUirbTlgTF6wIH/I966TmttfwyabpQYMJ7j+74uow4CveQOv2odiR2ZQrftkjQ== carl@3NW1MG3
+
+# - upload to github
+"https://github.com/settings/ssh/new"
+
+# Add new SSH Key
+# Title
+"carl.dell.pub"
+
+# Key type
+"[Authentication Key↕]"
+
+# Key
+"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDIAEJ2rV+x7hYAMmHuTErajdkLp3+I3CIR1uOPs1wuNisVrL4ZOiRc1RXF1XTE8lyXoF5WerlsAsWFA3wgxRhK+XC4X9UoUqo4upXXaM2ahJeQSfHIX82yxSMfalrVP2uhdSwMwqTfSq+UHwLsxR8KGws7MysJ+PezkJiGr+k1owtJHAfyssBkUX/KFqOCld27rzHcfs77WLCCeZCjXVpd6YBJxB0zjDXm/c0i4AEzLS6e0XZ5uhCDGYNZKkRH6DmI344poQXTBdLR3JnU0pLUC6l+hBm2IOiHBuoynZQrSLxWNfsPk2LHLBbifqaOsg7Cnrxs6hk1/hoarN2t3r3EhLg3M7S1nylb8R+wkrNEY0FhkL4E59wL8HB54oN/NK/vx/p5j5yvT5rG+dHoV8pAYSFwpjICgW7tSzZtFIpHfdLj0+2kSF0E/DK7BtAxsoqXq7TkG49OAnrZS797GXt4s+MufGwafeEYSTW/nyXjE14c6QE3lfOPYdrj9qGThkBO4V30loIj3X5etY45kaI1w+hcqlS7Kq2CKQ6/w2/0vIwKJ7uRSPjvd77KcsJUAicSvvBms/XoQrsB6RNlIxVu7oHvAn297XaF4eKV0T6NuI1HZUirbTlgTF6wIH/I966TmttfwyabpQYMJ7j+74uow4CveQOv2odiR2ZQrftkjQ== carl@3NW1MG3"
+
+"Add SSH key"
+
+# - create ssh config file
+cat <<"EOF" > ~/.ssh/config
+Host github.com
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/carl.dell
+
+  Host 10.49.72.27
+  HostName 10.49.72.27
+  IdentityFile ~/.ssh/carl.dell
+EOF
+
+# - verify file
+cat  ~/.ssh/config
+# Host github.com
+# HostName github.com
+# User git
+# IdentityFile ~/.ssh/carl.dell
+
+# - Create source directorycat 
+cd
+mkdir src
+cd src
+
+# - Clone repo
+git clone git@github.com:JensenEducationKista/MAR24.git
+#Cloning into 'MAR24'...
+#Enter passphrase for key '/home/carl/.ssh/carl.dell':
+#remote: Enumerating objects: 35, done.
+#remote: Counting objects: 100% (35/35), done.
+#remote: Compressing objects: 100% (27/27), done.
+#remote: Total 35 (delta 14), reused 24 (delta 6), pack-reused 0 (from 0)
+#Receiving objects: 100% (35/35), 22.26 KiB | 2.23 MiB/s, done.
+#cd Resolving deltas: 100% (14/14), done.
+
+# - Push changes to remote repository
+cd MAR24
+mkdir carl  
+cd carl
+git status
+# On branch main
+#Your branch is up to date with 'origin/main'.
